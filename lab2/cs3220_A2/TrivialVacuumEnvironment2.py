@@ -6,12 +6,52 @@ import random
 class TrivialVacuumEnvironment2(Environment):
   def __init__(self):
     super().__init__()
-    self.status = {loc_A: random.choice(['Clean', 'Dirty']),
-                   loc_B: random.choice(['Clean', 'Dirty'])}
+
+    self.status = {loc_A : 'Clean', loc_B : 'Clean'} # status of the locations, is set to clean by defualt but is made dirty when agent perceives a dirt on this location
+
+    self.things = [] # Empty list of things in the environment.
+
+  #adding the thing in random location
+
+  def add_thing(self, thing):
+    self.things.append(thing)
+    thing.location = self.default_location(thing)
+
+  #output the list of things with their locations
+  def list_things_location(self):
+    for thing in self.things:
+        print(thing, thing.location)
+
+  #removing the thing from the env
+  def remove_thing(self, thing):
+    self.things.remove(thing)
+
+  #the status of the env is unknown **
+
+
+
+
 
   def percept(self, agent):
     #Returns the agent's location, and the location status (Dirty/Clean).
-    return agent.location, self.status[agent.location]
+    for thing in self.list_things_location():
+        # if there is dirt in the same location as the agent while the agent is perceiving
+        # the location is dirty
+        if thing.name == 'dirt' and thing.location == agent.location:
+            # loop through loc's in status and if the location is the same as the agent's location
+            # set that loc to dirty and return the agent's location and 'Dirty'
+            for loc in self.status:
+                if loc == agent.location:
+                    loc = 'Dirty'
+                    return agent.location, 'Dirty'
+        else:
+            # if there is no dirt in the location, the location is clean
+            for loc in self.status:
+                if loc == agent.location:
+                    loc = 'Clean'
+                    return agent.location, 'Clean'
+       
+
 
   def is_agent_alive(self, agent):
     return agent.alive
