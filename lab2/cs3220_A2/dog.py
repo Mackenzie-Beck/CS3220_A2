@@ -1,5 +1,5 @@
 from thingClass import Thing
 
-class Milk(Thing):
+class Dog(Thing):
     def __init__(self):
-        self.alive = False
+        self.alive = True
