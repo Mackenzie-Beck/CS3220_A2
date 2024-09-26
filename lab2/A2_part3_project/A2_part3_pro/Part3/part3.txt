@@ -1,0 +1,36 @@
+
+
+There is an office building with 4 rooms. The delivery agent moves from one room to another and gives the package according to the type of recipient in the room. The recipients are:
+
+    an office manager - waiting for daily mail
+    an IT specialist - ordered donuts from Tim Hortons
+    a Student - ordered a pizza from Domino Pizza
+
+The initial distribution recipients among 4 rooms is random and unknown to the Agent.
+
+However, the Agent can perceive its location (what room is current) and all recipients in the room.
+
+The Agent Program is able to recognize the type of recipient based on the Agent's percepts (one recipient per step).
+
+The Agent gives the suitable package to the recipient.
+
+If all recipients in the room have already received their packages (or nobody in the room) the Agent moves to the next room.
+
+When the last room has been checked the Agent stops. The initial position of the Agent is random.
+
+
+
+ASSIGNMENT BELOW
+
+
+Design and implement the Delivery Agent for the Environment according to the plan above.
+
+The Agent can be placed in any room randomly.
+
+There are 10 people in the building (the number of each type of recipient is randomly generated, as are their places in the building).
+
+The agent can recognise the location and there is a set of rules for movement. The agent can move forward, turn right/left. Initially the agent position is ready to go forward (-->).
+
+Determine the case when the agent should stop (remember that the agent has no memory).
+
+The agent's performance changes as follows: Each move (or turn): -1 Give a package: -3 Initially the agent's performance is 40 (30 for packages, 5 for movement, 5 - extra)
