@@ -12,7 +12,6 @@ class TrivialVacuumEnvironment2(Environment):
     self.things = [] # Empty list of things in the environment.
 
   #adding the thing in random location
-
   def add_thing(self, thing):
     self.things.append(thing)
     thing.location = self.default_location(thing)
