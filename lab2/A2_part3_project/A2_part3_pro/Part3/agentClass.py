@@ -11,7 +11,7 @@ There is an optional slot, .performance, which is a number giving
 the performance measure of the agent in its environment.'''
 from thingClass import Thing
 from locations import *
-
+from directions import *
 import collections.abc #we need collections.abc which provides abstract base classes that can be used to test whether a class provides a particular interface
 
 class Agent(Thing):
@@ -20,6 +20,7 @@ class Agent(Thing):
         self.alive = True
         self.performance = 0
         self.location=None
+        self.direction=right
 
         if program is None or not isinstance(program, collections.abc.Callable):
             print("Can't find a valid program for {}, falling back to default.".format(self.__class__.__name__))

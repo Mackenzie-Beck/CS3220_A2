@@ -31,8 +31,8 @@ def rule_match(state, rules):
 
 def interpret_input_a2p3Rules(percept):
   # this is where the agent interprets its percept and updates env
+  loc, things = percept
   pass
-
 def rule_match_a2p3(state, rules):
   # this is where the agent selects an action based on its state and rules
   pass
