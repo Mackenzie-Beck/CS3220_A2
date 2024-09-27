@@ -6,9 +6,6 @@ import random
 class TrivialVacuumEnvironment2(Environment):
   def __init__(self):
     super().__init__()
-
-    self.status = {loc_A : 'Clean', loc_B : 'Clean'} # status of the locations, is set to clean by defualt but is made dirty when agent perceives a dirt on this location
-
     self.things = [] # Empty list of things in the environment.
 
   #adding the thing in random location
@@ -27,13 +24,9 @@ class TrivialVacuumEnvironment2(Environment):
 
   #the status of the env is unknown **
 
-
-
-
-
   def percept(self, agent):
     #Returns the agent's location, and the location status (Dirty/Clean).
-    for thing in self.list_things_location():
+    for thing in self.things:
         # if there is dirt in the same location as the agent while the agent is perceiving
         # the location is dirty
         if thing.name == 'dirt' and thing.location == agent.location:
@@ -49,8 +42,6 @@ class TrivialVacuumEnvironment2(Environment):
                 if loc == agent.location:
                     loc = 'Clean'
                     return agent.location, 'Clean'
-       
-
 
   def is_agent_alive(self, agent):
     return agent.alive
