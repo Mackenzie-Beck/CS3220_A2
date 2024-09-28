@@ -52,7 +52,6 @@ class House(Environment):
             agent.alive = False
             print("Agent {} is dead.".format(agent))
 
-    '''
     def execute_action(self, agent, action):
         #Check if agent alive, if so, execute action
         if self.is_agent_alive(agent):
@@ -60,19 +59,32 @@ class House(Environment):
             Track performance.
             Score 10 for each dirt cleaned; -1 for each move."""
 
-            if action == 'Right':
-                agent.location = loc_B
+            if action == 'MoveRight' and agent.location != loc_E:
+                if agent.location == loc_A:
+                    agent.location = loc_B
+                elif agent.location == loc_B:
+                    agent.location = loc_C
+                elif agent.location == loc_C:
+                    agent.location = loc_D
+                else:
+                    agent.location = loc_E
                 agent.performance -= 1
                 self.update_agent_alive(agent)
-            elif action == 'Left':
-                agent.location = loc_A
+            elif action == 'MoveLeft' and agent.location != loc_A:
+                if agent.location == loc_B:
+                    agent.location = loc_A
+                elif agent.location == loc_C:
+                    agent.location = loc_B
+                elif agent.location == loc_D:
+                    agent.location = loc_C
+                else:
+                    agent.location = loc_D
                 agent.performance -= 1
                 self.update_agent_alive(agent)
-            elif action == 'Suck':
+            elif action == 'Eat':
                 if self.status[agent.location] == 'Dirty':
                     agent.performance += 10
                 self.status[agent.location] = 'Clean'
-    '''
 
     def default_location(self, thing):
         """Agents start in either location at random."""
