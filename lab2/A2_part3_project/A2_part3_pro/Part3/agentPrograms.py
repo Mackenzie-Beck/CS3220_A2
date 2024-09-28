@@ -1,5 +1,6 @@
 '''An idea of Random Agent Program is to choose an action at random, ignoring all percepts'''
 from locations import *
+from directions import *
 from agents import Student, ITStaff,OfficeManager
 
 
@@ -31,20 +32,37 @@ def rule_match(state, rules):
 
 def interpret_input_a2p3Rules(percept):
   # this is where the agent interprets its percept and updates env
-  loc, things = percept
-  pass
+  loc, dir, things = percept
+  status = 'Clear'
+
+  # if there are no things in the room, check if the agent is in the last room
+  if len(things) == 0:
+    if (loc in [Room1_A, Room2_A]) and dir == left:
+      status = 'Last room'
+  else:
+    for thing in things:
+      if isinstance(thing, OfficeManager):
+        status = 'Office manager'
+      elif isinstance(thing, ITStaff):
+        status = 'IT'
+      elif isinstance(thing, Student):
+        status = 'Student'  
+  # in this agent status has the format ('string', dir)
+  return status
+
+
+
 def rule_match_a2p3(state, rules):
   # this is where the agent selects an action based on its state and rules
-  pass
+  return rules[state]
 
 
 
 
 
 
-def interpret_input_A2pro(percept):
+"""def interpret_input_A2pro(percept):
   loc, percepts = percept
-  #print(percepts,loc, loc_D)
   status='Clear'
   if len(percepts)==0:
     if loc==loc_D:
@@ -59,10 +77,10 @@ def interpret_input_A2pro(percept):
       elif isinstance(p, Student):
         return 'Student'
   print(status)
-  return status
+  return status 
 
 def rule_match_A2pro(state, rules):
-  return rules[state]
+  return rules[state]"""
 
 
 '''def ReflexAgentProgram_A2pro(rules,interpret_input,rule_match):

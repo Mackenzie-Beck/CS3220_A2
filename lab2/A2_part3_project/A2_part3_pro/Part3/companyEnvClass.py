@@ -4,7 +4,7 @@ from thingClass import Thing
 from locations import *
 
 
-class CompanyEnvironment(environmentPro):
+"""class CompanyEnvironment(environmentPro):
   def __init__(self):
     super().__init__()
     self.locations=[loc_A, loc_B, loc_C, loc_D]
@@ -62,7 +62,7 @@ class CompanyEnvironment(environmentPro):
     return no_agents
 
 
-
+"""
 
 
 

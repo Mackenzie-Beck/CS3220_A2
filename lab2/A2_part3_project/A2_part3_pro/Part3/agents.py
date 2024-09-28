@@ -28,5 +28,5 @@ def ReflexAgentP3() :
   return Agent(ReflexAgentProgram(a2p3Rules,interpret_input_a2p3Rules,rule_match_a2p3))
 
 
-def ReflexAgentA2pro() :
-  return Agent(ReflexAgentProgram(a2proRules,interpret_input_A2pro,rule_match_A2pro))
+"""def ReflexAgentA2pro() :
+  return Agent(ReflexAgentProgram(a2proRules,interpret_input_A2pro,rule_match_A2pro))"""
