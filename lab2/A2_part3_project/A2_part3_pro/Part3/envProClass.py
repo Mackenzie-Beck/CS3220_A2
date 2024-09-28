@@ -18,7 +18,7 @@ class environmentPro(Environment):
     else:
       if isinstance(thing, Agent):
         print("Welcome!")
-        thing.performance = 0
+        thing.performance = 40 # had to change this to 40  because it was setting the performance to 0 when there were no other agents
         thing.location = location if location is not None else self.default_location(thing)
         self.agents.append(thing)
     if thing in self.things and thing.location==location:

@@ -18,7 +18,7 @@ class Agent(Thing):
 
     def __init__(self, program=None):
         self.alive = True
-        self.performance = 40
+        self.performance = 0
         self.location=None
         self.direction = right
 

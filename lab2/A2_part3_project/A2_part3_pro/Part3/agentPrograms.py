@@ -47,7 +47,7 @@ def interpret_input_a2p3Rules(percept):
         status = 'IT'
       elif isinstance(thing, Student):
         status = 'Student'  
-  # in this agent status has the format ('string', dir)
+
   return status
 
 

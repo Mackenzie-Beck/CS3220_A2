@@ -8,7 +8,6 @@ def test_environment():
 
     # Create the agent
     agent = ReflexAgentP3()
-
     # Add the agent to the environment
     env.add_thing(agent)
 

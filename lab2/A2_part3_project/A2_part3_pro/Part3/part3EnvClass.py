@@ -17,15 +17,21 @@ class part3Env(environmentPro):
     print("The item is starting in random location...")
     return random.choice(self.locations)
     
+
+
+
   def percept(self, agent):
     #return a list of things that are in our agent's location
     things = self.list_things_at(agent.location)
     return agent.location, agent.direction, things
   
+
+
+
+
   def execute_action(self, agent, action):
     #changes the state of the environment based on what the agent does.
     if self.is_agent_alive(agent):
-
       if action=='Go forward':
           # if right then check if agent is in rooms that require special actions
           if agent.direction==right:
@@ -33,6 +39,7 @@ class part3Env(environmentPro):
                 agent.location = Room2_C
                 agent.direction = left
                 agent.performance -= 1
+
             elif agent.location == Room2_C:
                 agent.location = Room1_C
                 agent.direction = left
@@ -73,4 +80,4 @@ class part3Env(environmentPro):
 
 
       self.update_agent_alive(agent)
-      print("The Agent decided to {} at location: {}".format(action,agent.location))
+     # print("The Agent decided to {} at location: {}".format(action,agent.location))
