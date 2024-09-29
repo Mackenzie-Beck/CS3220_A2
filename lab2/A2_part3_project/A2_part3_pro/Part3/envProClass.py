@@ -23,7 +23,7 @@ class environmentPro(Environment):
         self.agents.append(thing)
     if thing in self.things and thing.location==location:
       print("Can't add the same agent twice")
-    else:
+    else: 
       if not isinstance(thing, Agent):
         thing.location = location if location is not None else self.default_location(thing)
         self.things.append(thing)
