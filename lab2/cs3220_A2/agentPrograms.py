@@ -29,23 +29,6 @@ def TableDrivenAgentProgram(table):
 
 
 
-# cat-agent program
-def CatAgentProgram(table):
-   
-
-   percepts = []
-
-   def program(percept):
-      percepts.append(percept)
-      action = table.get(tuple(percepts))
-
-      if action is None:
-         print("Not such percept sequence in my table")
-
-      return action
-
-   return program
-
 
 
 
