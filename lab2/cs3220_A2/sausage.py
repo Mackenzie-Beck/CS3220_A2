@@ -5,3 +5,4 @@ class Sausage(Thing):
         Thing.__init__(self)
         self.weight = weight
         self.calories = 100
+        self.location = location

@@ -6,3 +6,4 @@ class Milk(Thing):
         self.name = 'milk'
         self.calories = 150
         self.weight = weight
+        self.location = location
