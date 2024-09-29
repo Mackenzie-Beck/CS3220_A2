@@ -1,5 +1,7 @@
 from environmentClass import Environment
 from locations_cfh import *
+from milk import Milk
+from sausage import Sausage
 
 import random
 
@@ -13,7 +15,7 @@ class CatFriendlyHouse(Environment):
     self.things.append(thing)
     thing.location = self.default_location(thing)
 
-  #output the list of things with their locations
+  #output the thing which is at a given location
   def list_things_location(self, location):
     for thing in self.things:
         if thing.location == location:
@@ -27,9 +29,12 @@ class CatFriendlyHouse(Environment):
 
   def percept(self, agent):
     #Returns the agent's location, and the location status (SausageHere/MilkHere/Empty).
-
-
-    pass
+    status = "Empty"
+    if self.list_things_location(agent.location).isinstance(Sausage):
+      status = "SausageHere"
+    elif self.list_things_location(agent.location).isinstance(Milk):
+      status = "MilkHere"
+    return(agent.location, status)
 
   def is_agent_alive(self, agent):
     return agent.alive
@@ -44,4 +49,4 @@ class CatFriendlyHouse(Environment):
 
   def default_location(self, thing):
         """Agents start in either location at random."""
-        return random.choice([loc_A, loc_B])
+        return random.choice([room1, room2, room3])
