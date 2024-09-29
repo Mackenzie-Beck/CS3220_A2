@@ -44,7 +44,7 @@ class House(Environment):
                         self.moveToRight(thing2)
                         if thing2.location == oldLocation:
                             thing2.location = loc_D
-                    else:
+                    elif moveDir == 'MoveLeft':
                         oldLocation = thing2.location
                         self.moveToLeft(thing2)
                         if thing2.location == oldLocation:
@@ -84,31 +84,19 @@ class House(Environment):
         for thing in self.things:
             print(thing, thing.location)
 
+    def list_things_at(self, location):
+        return [thing for thing in self.things if thing.location == location]
+
     #removing the thing from the env
     def remove_thing(self, thing):
         self.things.remove(thing)
 
     #the status of the env is unknown **
-    '''
+
     def percept(self, agent):
-        #Returns the agent's location, and the location status (Dirty/Clean).
-        for thing in self.things:
-            # if there is dirt in the same location as the agent while the agent is perceiving
-            # the location is dirty
-            if thing.name == 'dirt' and thing.location == agent.location:
-                # loop through loc's in status and if the location is the same as the agent's location
-                # set that loc to dirty and return the agent's location and 'Dirty'
-                for loc in self.status:
-                    if loc == agent.location:
-                        loc = 'Dirty'
-                        return agent.location, 'Dirty'
-            else:
-                # if there is no dirt in the location, the location is clean
-                for loc in self.status:
-                    if loc == agent.location:
-                        loc = 'Clean'
-                        return agent.location, 'Clean'
-    '''
+        #Returns a list of things that are in our agent's location
+        things = self.list_things_at(agent.location)
+        return agent.location, agent.direction, things
 
     def is_agent_alive(self, agent):
         return agent.alive
@@ -125,18 +113,37 @@ class House(Environment):
             Track performance.
             Score 10 for each dirt cleaned; -1 for each move."""
 
+            percepted = self.list_things_at(agent.location)
+            marked = []
+
             if action == 'MoveRight':
                 self.moveToRight(agent)
                 agent.performance -= 1
-                self.update_agent_alive(agent)
-            elif action == 'MoveLeft' and agent.location != loc_A:
+            elif action == 'MoveLeft':
                 self.moveToLeft(agent)
                 agent.performance -= 1
-                self.update_agent_alive(agent)
-            elif action == 'Eat':
-                if self.status[agent.location] == 'Dirty':
-                    agent.performance += 10
-                self.status[agent.location] = 'Clean'
+            elif action == 'Drink':
+                for thing in percepted:
+                    if thing.name == 'Milk':
+                        agent.performance += 5
+                        marked.append(thing)
+            elif action == 'Eat' and agent.performance >= 3:
+                for thing in percepted:
+                    if thing.name == 'Mouse':
+                        agent.performance += 10
+                        marked.append(thing)
+            elif action == 'Fight' and agent.performance >= 10:
+                for thing in percepted:
+                    if thing.name == 'Dog':
+                        agent.performance += 20
+                        marked.append(thing)
+            elif action == 'Fight' and agent.performance < 10:
+                for thing in percepted:
+                    if thing.name == 'Dog':
+                        agent.performance -= 10
+            for thing in marked:
+                self.remove_thing(thing)
+            self.update_agent_alive(agent)
 
     def default_location(self, thing):
         """Agents start in either location at random."""
