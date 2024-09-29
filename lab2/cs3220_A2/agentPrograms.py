@@ -14,7 +14,7 @@ def TableDrivenAgentProgram(table):
 
     def program(percept):
         percepts.append(percept)
-        #print(tuple(percepts))
+        print(tuple(percepts))
         action = table.get(tuple(percepts))
         
         if action is None:

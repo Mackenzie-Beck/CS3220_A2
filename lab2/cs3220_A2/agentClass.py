@@ -11,16 +11,16 @@ There is an optional slot, .performance, which is a number giving
 the performance measure of the agent in its environment.'''
 from thingClass import Thing
 
-import collections #we need collections.abc which provides abstract base classes that can be used to test whether a class provides a particular interface
+from collections import abc #we need collections.abc which provides abstract base classes that can be used to test whether a class provides a particular interface
 
 class Agent(Thing):
 
     def __init__(self, program=None):
         self.alive = True
-        self.performance = 0
+        self.performance = 10 # set to 10 as default bacause my cat was dying immediatley if it had no food or milk
         self.location=None
 
-        if program is None or not isinstance(program, collections.abc.Callable):
+        if program is None or not isinstance(program, abc.Callable):
             print("Can't find a valid program for {}, falling back to default.".format(self.__class__.__name__))
 
             def program(percept):
