@@ -45,7 +45,30 @@ class CatFriendlyHouse(Environment):
       print("Agent {} is dead.".format(agent))
 
   def execute_action(self, agent, action):
-     pass
+     
+     if self.is_agent_alive(agent):
+        if action == "moveright":
+           agent.location += 1
+           agent.performance -= 1
+           self.update_agent_alive(agent)
+        elif action == "moveleft":
+           agent.location -= 1
+           agent.performance -= 1
+           self.update_agent_alive(agent)
+
+
+        # eating and drinking give performance equal to the calories of the food divided by the weight
+        # assignment didnt really specify how the two should affect eachother but I think that works
+        elif action == "eat":
+           sausage = self.list_things_location(agent.location)
+           agent.performance += sausage.calories // sausage.weight
+           self.remove_thing(sausage)
+        elif action == "drink":
+           milk = self.list_things_location(agent.location)
+           agent.performance += milk.calories // milk.weight
+           self.remove_thing(milk)
+        elif action == "stop":
+            agent.alive = False
 
   def default_location(self, thing):
         """Agents start in either location at random."""

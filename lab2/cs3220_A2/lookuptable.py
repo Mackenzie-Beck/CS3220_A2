@@ -1,13 +1,7 @@
 from locations_cfh import *
 
-
-# There are three rooms in the cat friendly house
-# The cat can either moveleft, moveright, eat, or drink
-# eats if there is a sausage in the room
-# drinks if there is a milk in the room
-# moves to the right if there is an empty room unless in room 3
-
-
+# lookup table for the cat friendly house
+# Did not enjoy this
 
 feedingRules = {
     #start in room 1
@@ -123,11 +117,6 @@ feedingRules = {
     ((room3, 'MilkHere'), (room3, 'Empty'), (room2, 'Empty')): 'moveleft',
     ((room3, 'MilkHere'), (room3, 'Empty'), (room2, 'Empty'), (room1, 'SausageHere')): 'eat',
     ((room3, 'MilkHere'), (room3, 'Empty'), (room2, 'Empty'), (room1, 'SausageHere'), (room1, 'Empty')): 'stop',
-
-
-
-
-
 
 
 
