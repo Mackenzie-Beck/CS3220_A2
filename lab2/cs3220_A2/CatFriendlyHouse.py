@@ -1,9 +1,9 @@
 from environmentClass import Environment
-from locations import *
+from locations_cfh import *
 
 import random
 
-class TrivialVacuumEnvironment2(Environment):
+class CatFriendlyHouse(Environment):
   def __init__(self):
     super().__init__()
     self.things = [] # Empty list of things in the environment.
@@ -14,9 +14,10 @@ class TrivialVacuumEnvironment2(Environment):
     thing.location = self.default_location(thing)
 
   #output the list of things with their locations
-  def list_things_location(self):
+  def list_things_location(self, location):
     for thing in self.things:
-        print(thing, thing.location)
+        if thing.location == location:
+           return thing
 
   #removing the thing from the env
   def remove_thing(self, thing):
@@ -25,6 +26,9 @@ class TrivialVacuumEnvironment2(Environment):
   #the status of the env is unknown **
 
   def percept(self, agent):
+    #Returns the agent's location, and the location status (SausageHere/MilkHere/Empty).
+
+
     pass
 
   def is_agent_alive(self, agent):
