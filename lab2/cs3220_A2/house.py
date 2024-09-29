@@ -10,8 +10,74 @@ class House(Environment):
 
     #adding the thing in random location
     def add_thing(self, thing):
-        self.things.append(thing)
         thing.location = self.default_location(thing)
+        marked = []
+        allow = True
+        for thing2 in self.things:
+            if thing.name == 'mouse':
+                #If mouse and milk are in the same room, milk gets marked for removal.
+                if (thing.location == thing2.location) and thing2.name == 'milk':
+                    marked.append(thing2)
+                #If mouse and dog are in the same room, mouse moves to an adjacent room.
+                elif (thing.location == thing2.location) and thing2.name == 'dog':
+                    moveDir = random.choice(['MoveRight', 'MoveLeft'])
+                    if moveDir == 'MoveRight':
+                        oldLocation = thing.location
+                        self.moveToRight(thing)
+                        if thing.location == oldLocation:
+                            thing.location = loc_D
+                    else:
+                        oldLocation = thing.location
+                        self.moveToLeft(thing)
+                        if thing.location == oldLocation:
+                            thing.location = loc_B
+            elif thing.name == 'milk':
+                #If milk and mouse are in the same room, milk gets set to not be added.
+                if (thing.location == thing2.location) and thing2.name == 'mouse':
+                    allow = False
+            elif thing.name == 'dog':
+                #If dog and mouse are in the same room, mouse moves to an adjacent room.
+                if (thing.location == thing2.location) and thing2.name == 'mouse':
+                    moveDir = random.choice(['MoveRight', 'MoveLeft'])
+                    if moveDir == 'MoveRight':
+                        oldLocation = thing2.location
+                        self.moveToRight(thing2)
+                        if thing2.location == oldLocation:
+                            thing2.location = loc_D
+                    else:
+                        oldLocation = thing2.location
+                        self.moveToLeft(thing2)
+                        if thing2.location == oldLocation:
+                            thing2.location = loc_B
+        #Removes the things from the house marked for removal.
+        for thing2 in marked:
+            self.remove_thing(thing2)
+        #Adds the thing to the house (if applicable).
+        if allow == True:
+            self.things.append(thing)
+
+    def moveToRight(self, thing):
+        if thing.location != loc_E:
+            if thing.location == loc_A:
+                thing.location = loc_B
+            elif thing.location == loc_B:
+                thing.location = loc_C
+            elif thing.location == loc_C:
+                thing.location = loc_D
+            else:
+                thing.location = loc_E
+    
+    def moveToLeft(self, thing):
+        if thing.location != loc_A:
+            if thing.location == loc_B:
+                thing.location = loc_A
+            elif thing.location == loc_C:
+                thing.location = loc_B
+            elif thing.location == loc_D:
+                thing.location = loc_C
+            else:
+                thing.location = loc_D
+        
 
     #output the list of things with their locations
     def list_things_location(self):
@@ -59,26 +125,12 @@ class House(Environment):
             Track performance.
             Score 10 for each dirt cleaned; -1 for each move."""
 
-            if action == 'MoveRight' and agent.location != loc_E:
-                if agent.location == loc_A:
-                    agent.location = loc_B
-                elif agent.location == loc_B:
-                    agent.location = loc_C
-                elif agent.location == loc_C:
-                    agent.location = loc_D
-                else:
-                    agent.location = loc_E
+            if action == 'MoveRight':
+                self.moveToRight(agent)
                 agent.performance -= 1
                 self.update_agent_alive(agent)
             elif action == 'MoveLeft' and agent.location != loc_A:
-                if agent.location == loc_B:
-                    agent.location = loc_A
-                elif agent.location == loc_C:
-                    agent.location = loc_B
-                elif agent.location == loc_D:
-                    agent.location = loc_C
-                else:
-                    agent.location = loc_D
+                self.moveToLeft(agent)
                 agent.performance -= 1
                 self.update_agent_alive(agent)
             elif action == 'Eat':
