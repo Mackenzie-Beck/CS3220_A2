@@ -8,58 +8,58 @@ feedingRules = {
 
 
     #Empty room 1
-    (room1, 'Empty'): 'moveright',
+    ((1, 'Empty'),): 'moveright',
 
 
     #Empty room 1, Sausage room 2
-    ((room1, 'Empty'), (room2, 'SausageHere')): 'eat',
-    ((room1, 'Empty'), (room2, 'SausageHere'), (room2, 'Empty')): 'moveright',
-    ((room1, 'Empty'), (room2, 'SausageHere'), (room2, 'Empty'), (room3, 'MilkHere')): 'drink',
-    ((room1, 'Empty'), (room2, 'SausageHere'), (room2, 'Empty'), (room3, 'MilkHere'), (room3, 'Empty')): 'stop',
+    ((1, 'Empty'), (2, 'SausageHere')): 'eat',
+    ((1, 'Empty'), (2, 'SausageHere'), (2, 'Empty')): 'moveright',
+    ((1, 'Empty'), (2, 'SausageHere'), (2, 'Empty'), (3, 'MilkHere')): 'drink',
+    ((1, 'Empty'), (2, 'SausageHere'), (2, 'Empty'), (3, 'MilkHere'), (3, 'Empty')): 'stop',
 
 
     
 
 
     #Empty room 1, Milk room 2
-    ((room1, 'Empty'), (room2, 'MilkHere')): 'drink',
-    ((room1, 'Empty'), (room2, 'MilkHere'), (room2, 'Empty')): 'moveright',
-    ((room1, 'Empty'), (room2, 'MilkHere'), (room2, 'Empty'), (room3, 'SausageHere')): 'eat',
-    ((room1, 'Empty'), (room2, 'MilkHere'), (room2, 'Empty'), (room3, 'SausageHere'), (room3, 'Empty')): 'stop',
+    ((1, 'Empty'), (2, 'MilkHere')): 'drink',
+    ((1, 'Empty'), (2, 'MilkHere'), (2, 'Empty')): 'moveright',
+    ((1, 'Empty'), (2, 'MilkHere'), (2, 'Empty'), (3, 'SausageHere')): 'eat',
+    ((1, 'Empty'), (2, 'MilkHere'), (2, 'Empty'), (3, 'SausageHere'), (3, 'Empty')): 'stop',
     
 
 
 
     #Sausage room 1
-    (room1, 'SausageHere'): 'eat',
-    ((room1, 'SausageHere'), (room1, 'Empty')): 'moveright',
+    ((1, 'SausageHere'),): 'eat',
+    ((1, 'SausageHere'), (1, 'Empty')): 'moveright',
 
     #Sausage room1 milk room 3
-    ((room1, 'SausageHere'), (room1, 'Empty'), (room2, 'Empty')): 'moveright',
-    ((room1, 'SausageHere'), (room1, 'Empty'), (room2, 'Empty'), (room3, 'MilkHere')): 'drink',
-    ((room1, 'SausageHere'), (room1, 'Empty'), (room2, 'Empty'), (room3, 'MilkHere'), (room3, 'Empty')): 'stop',
+    ((1, 'SausageHere'), (1, 'Empty'), (2, 'Empty')): 'moveright',
+    ((1, 'SausageHere'), (1, 'Empty'), (2, 'Empty'), (3, 'MilkHere')): 'drink',
+    ((1, 'SausageHere'), (1, 'Empty'), (2, 'Empty'), (3, 'MilkHere'), (3, 'Empty')): 'stop',
 
     # Sausage room 1, Milk room 2
-    ((room1, 'SausageHere'), (room1, 'Empty'), (room2, 'MilkHere')): 'drink',
-    ((room1, 'SausageHere'), (room1, 'Empty'), (room2, 'MilkHere'), (room2, 'Empty')): 'moveright',
-    ((room1, 'SausageHere'), (room1, 'Empty'), (room2, 'MilkHere'), (room2, 'Empty'), (room3, 'Empty')): 'stop',
+    ((1, 'SausageHere'), (1, 'Empty'), (2, 'MilkHere')): 'drink',
+    ((1, 'SausageHere'), (1, 'Empty'), (2, 'MilkHere'), (2, 'Empty')): 'moveright',
+    ((1, 'SausageHere'), (1, 'Empty'), (2, 'MilkHere'), (2, 'Empty'), (3, 'Empty')): 'stop',
 
 
 
 
     # Milk room 1
-    (room1, 'MilkHere'): 'drink',
-    ((room1, 'MilkHere'), (room1, 'Empty')): 'moveright',
+    ((1, 'MilkHere'),): 'drink',
+    ((1, 'MilkHere'), (1, 'Empty')): 'moveright',
 
     # Milk room 1 Sausage room 3
-    ((room1, 'MilkHere'), (room1, 'Empty'), (room2, 'Empty')): 'moveright',
-    ((room1, 'MilkHere'), (room1, 'Empty'), (room2, 'Empty'), (room3, 'SausageHere')): 'eat',
-    ((room1, 'MilkHere'), (room1, 'Empty'), (room2, 'Empty'), (room3, 'SausageHere'), (room3, 'Empty')): 'stop',
+    ((1, 'MilkHere'), (1, 'Empty'), (2, 'Empty')): 'moveright',
+    ((1, 'MilkHere'), (1, 'Empty'), (2, 'Empty'), (3, 'SausageHere')): 'eat',
+    ((1, 'MilkHere'), (1, 'Empty'), (2, 'Empty'), (3, 'SausageHere'), (3, 'Empty')): 'stop',
 
     # Milk room 1, Sausage room 2
-    ((room1, 'MilkHere'), (room1, 'Empty'), (room2, 'SausageHere')): 'eat',
-    ((room1, 'MilkHere'), (room1, 'Empty'), (room2, 'SausageHere'), (room2, 'Empty')): 'moveright',
-    ((room1, 'MilkHere'), (room1, 'Empty'), (room2, 'SausageHere'), (room2, 'Empty'), (room3, 'Empty')): 'stop',
+    ((1, 'MilkHere'), (1, 'Empty'), (2, 'SausageHere')): 'eat',
+    ((1, 'MilkHere'), (1, 'Empty'), (2, 'SausageHere'), (2, 'Empty')): 'moveright',
+    ((1, 'MilkHere'), (1, 'Empty'), (2, 'SausageHere'), (2, 'Empty'), (3, 'Empty')): 'stop',
 
 
 
@@ -67,56 +67,56 @@ feedingRules = {
     #Start in room 3
 
     #Empty room 3
-    (room3, 'Empty'): 'moveleft',
+    ((3, 'Empty'),): 'moveleft',
 
 
     #Empty room 3, Sausage room 2
-    ((room3, 'Empty'), (room2, 'SausageHere')): 'eat',
-    ((room3, 'Empty'), (room2, 'SausageHere'), (room2, 'Empty')): 'moveleft',
-    ((room3, 'Empty'), (room2, 'SausageHere'), (room2, 'Empty'), (room1, 'MilkHere')): 'drink',
-    ((room3, 'Empty'), (room2, 'SausageHere'), (room2, 'Empty'), (room1, 'MilkHere'), (room1, 'Empty')): 'stop',
+    ((3, 'Empty'), (2, 'SausageHere')): 'eat',
+    ((3, 'Empty'), (2, 'SausageHere'), (2, 'Empty')): 'moveleft',
+    ((3, 'Empty'), (2, 'SausageHere'), (2, 'Empty'), (1, 'MilkHere')): 'drink',
+    ((3, 'Empty'), (2, 'SausageHere'), (2, 'Empty'), (1, 'MilkHere'), (1, 'Empty')): 'stop',
 
 
 
     #Empty room 3, Milk room 2
-    ((room3, 'Empty'), (room2, 'MilkHere')): 'drink',
-    ((room3, 'Empty'), (room2, 'MilkHere'), (room2, 'Empty')): 'moveleft',
-    ((room3, 'Empty'), (room2, 'MilkHere'), (room2, 'Empty'), (room1, 'SausageHere')): 'eat',
-    ((room3, 'Empty'), (room2, 'MilkHere'), (room2, 'Empty'), (room1, 'SausageHere'), (room1, 'Empty')): 'stop',
+    ((3, 'Empty'), (2, 'MilkHere')): 'drink',
+    ((3, 'Empty'), (2, 'MilkHere'), (2, 'Empty')): 'moveleft',
+    ((3, 'Empty'), (2, 'MilkHere'), (2, 'Empty'), (1, 'SausageHere')): 'eat',
+    ((3, 'Empty'), (2, 'MilkHere'), (2, 'Empty'), (1, 'SausageHere'), (1, 'Empty')): 'stop',
 
 
     # Sausage room 3
-    (room3, 'SausageHere'): 'eat',
-    ((room3, 'SausageHere'), (room3, 'Empty')): 'moveleft',
+    ((3, 'SausageHere'),): 'eat',
+    ((3, 'SausageHere'), (3, 'Empty')): 'moveleft',
 
 
     # Sausage room 3, Milk room 2
-    ((room3, 'SausageHere'), (room3, 'Empty'), (room2, 'MilkHere')): 'drink',
-    ((room3, 'SausageHere'), (room3, 'Empty'), (room2, 'MilkHere'), (room2, 'Empty')): 'moveleft',
-    ((room3, 'SausageHere'), (room3, 'Empty'), (room2, 'MilkHere'), (room2, 'Empty'), (room1, 'Empty')): 'stop',
+    ((3, 'SausageHere'), (3, 'Empty'), (2, 'MilkHere')): 'drink',
+    ((3, 'SausageHere'), (3, 'Empty'), (2, 'MilkHere'), (2, 'Empty')): 'moveleft',
+    ((3, 'SausageHere'), (3, 'Empty'), (2, 'MilkHere'), (2, 'Empty'), (1, 'Empty')): 'stop',
 
 
     # Sausage room 3, Milk room 1
-    ((room3, 'SausageHere'), (room3, 'Empty'), (room2, 'Empty')): 'moveleft',
-    ((room3, 'SausageHere'), (room3, 'Empty'), (room2, 'Empty'), (room1, 'MilkHere')): 'drink',
-    ((room3, 'SausageHere'), (room3, 'Empty'), (room2, 'Empty'), (room1, 'MilkHere'), (room1, 'Empty')): 'stop',
+    ((3, 'SausageHere'), (3, 'Empty'), (2, 'Empty')): 'moveleft',
+    ((3, 'SausageHere'), (3, 'Empty'), (2, 'Empty'), (1, 'MilkHere')): 'drink',
+    ((3, 'SausageHere'), (3, 'Empty'), (2, 'Empty'), (1, 'MilkHere'), (1, 'Empty')): 'stop',
     
     
     #Milk room 3
-    (room3, 'MilkHere'): 'drink',
-    ((room3, 'MilkHere'), (room3, 'Empty')): 'moveleft',
+    ((3, 'MilkHere'),): 'drink',
+    ((3, 'MilkHere'), (3, 'Empty')): 'moveleft',
 
 
     #Milk room 3, Sausage room 2
-    ((room3, 'MilkHere'), (room3, 'Empty'), (room2, 'SausageHere')): 'eat',
-    ((room3, 'MilkHere'), (room3, 'Empty'), (room2, 'SausageHere'), (room2, 'Empty')): 'moveleft',
-    ((room3, 'MilkHere'), (room3, 'Empty'), (room2, 'SausageHere'), (room2, 'Empty'), (room1, 'Empty')): 'stop',
+    ((3, 'MilkHere'), (3, 'Empty'), (2, 'SausageHere')): 'eat',
+    ((3, 'MilkHere'), (3, 'Empty'), (2, 'SausageHere'), (2, 'Empty')): 'moveleft',
+    ((3, 'MilkHere'), (3, 'Empty'), (2, 'SausageHere'), (2, 'Empty'), (1, 'Empty')): 'stop',
 
 
     #Milk room 3, Sausage room 1
-    ((room3, 'MilkHere'), (room3, 'Empty'), (room2, 'Empty')): 'moveleft',
-    ((room3, 'MilkHere'), (room3, 'Empty'), (room2, 'Empty'), (room1, 'SausageHere')): 'eat',
-    ((room3, 'MilkHere'), (room3, 'Empty'), (room2, 'Empty'), (room1, 'SausageHere'), (room1, 'Empty')): 'stop',
+    ((3, 'MilkHere'), (3, 'Empty'), (2, 'Empty')): 'moveleft',
+    ((3, 'MilkHere'), (3, 'Empty'), (2, 'Empty'), (1, 'SausageHere')): 'eat',
+    ((3, 'MilkHere'), (3, 'Empty'), (2, 'Empty'), (1, 'SausageHere'), (1, 'Empty')): 'stop',
 
 
 
@@ -124,29 +124,29 @@ feedingRules = {
     #Start in room 2
 
     #Empty room 2
-    (room2, 'Empty'): 'moveright',
+    ((2, 'Empty'),): 'moveright',
 
 
     #Empty room 2, Sausage room 1, milk room 3
-    ((room2, 'Empty'), (room3, 'MilkHere')): 'drink',
-    ((room2, 'Empty'), (room3, 'MilkHere'), (room3, 'Empty')): 'moveleft',
-    ((room2, 'Empty'), (room3, 'MilkHere'), (room3, 'Empty'), (room2, 'Empty')): 'moveleft',
-    ((room2, 'Empty'), (room3, 'MilkHere'), (room3, 'Empty'), (room2, 'Empty'), (room1, 'SausageHere')): 'eat',
-    ((room2, 'Empty'), (room3, 'MilkHere'), (room3, 'Empty'), (room2, 'Empty'), (room1, 'SausageHere'), (room1, 'Empty')): 'stop',
+    ((2, 'Empty'), (3, 'MilkHere')): 'drink',
+    ((2, 'Empty'), (3, 'MilkHere'), (3, 'Empty')): 'moveleft',
+    ((2, 'Empty'), (3, 'MilkHere'), (3, 'Empty'), (2, 'Empty')): 'moveleft',
+    ((2, 'Empty'), (3, 'MilkHere'), (3, 'Empty'), (2, 'Empty'), (1, 'SausageHere')): 'eat',
+    ((2, 'Empty'), (3, 'MilkHere'), (3, 'Empty'), (2, 'Empty'), (1, 'SausageHere'), (1, 'Empty')): 'stop',
 
     
 
     #Sausage room2, Milk room 3, empty room 1
-    (room2, 'SausageHere'): 'eat',
-    ((room2, 'SausageHere'), (room2, 'Empty')): 'moveright',
-     ((room2, 'SausageHere'), (room2, 'Empty'), (room3, 'MilkHere')): 'drink',
-     ((room2, 'SausageHere'), (room2, 'Empty'), (room3, 'MilkHere'), (room3, 'Empty')): 'stop',
+    ((2, 'SausageHere'),): 'eat',
+    ((2, 'SausageHere'), (2, 'Empty')): 'moveright',
+     ((2, 'SausageHere'), (2, 'Empty'), (3, 'MilkHere')): 'drink',
+     ((2, 'SausageHere'), (2, 'Empty'), (3, 'MilkHere'), (3, 'Empty')): 'stop',
 
 
      #Milk room 2, Sausage room 3, empty room 1
-    (room2, 'MilkHere'): 'drink',
-    ((room2, 'MilkHere'), (room2, 'Empty')): 'moveright',
-    ((room2, 'MilkHere'), (room2, 'Empty'), (room3, 'SausageHere')): 'eat',
-    ((room2, 'MilkHere'), (room2, 'Empty'), (room3, 'SausageHere'), (room3, 'Empty')): 'stop',
+    ((2, 'MilkHere'),): 'drink',
+    ((2, 'MilkHere'), (2, 'Empty')): 'moveright',
+    ((2, 'MilkHere'), (2, 'Empty'), (3, 'SausageHere')): 'eat',
+    ((2, 'MilkHere'), (2, 'Empty'), (3, 'SausageHere'), (3, 'Empty')): 'stop',
 
 }

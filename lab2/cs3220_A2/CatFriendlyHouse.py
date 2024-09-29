@@ -30,9 +30,10 @@ class CatFriendlyHouse(Environment):
   def percept(self, agent):
     #Returns the agent's location, and the location status (SausageHere/MilkHere/Empty).
     status = "Empty"
-    if self.list_things_location(agent.location).isinstance(Sausage):
+    thing_at_location = self.list_things_location(agent.location)
+    if thing_at_location and isinstance(thing_at_location, Sausage):
       status = "SausageHere"
-    elif self.list_things_location(agent.location).isinstance(Milk):
+    elif thing_at_location and isinstance(thing_at_location, Milk):
       status = "MilkHere"
     return(agent.location, status)
 
@@ -45,7 +46,6 @@ class CatFriendlyHouse(Environment):
       print("Agent {} is dead.".format(agent))
 
   def execute_action(self, agent, action):
-     
      if self.is_agent_alive(agent):
         if action == "moveright":
            agent.location += 1
@@ -63,6 +63,7 @@ class CatFriendlyHouse(Environment):
            sausage = self.list_things_location(agent.location)
            agent.performance += sausage.calories // sausage.weight
            self.remove_thing(sausage)
+           
         elif action == "drink":
            milk = self.list_things_location(agent.location)
            agent.performance += milk.calories // milk.weight
@@ -72,4 +73,8 @@ class CatFriendlyHouse(Environment):
 
   def default_location(self, thing):
         """Agents start in either location at random."""
-        return random.choice([room1, room2, room3])
+        room = random.choice([room1, room2, room3])
+        if self.list_things_location(room) is None:
+            return room
+        else:
+            return self.default_location(thing)
