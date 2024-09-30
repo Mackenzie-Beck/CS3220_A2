@@ -1,5 +1,7 @@
 from part3EnvClass import part3Env
-from agents import *  # Assuming you have a DeliveryAgent class
+from agents import ReflexAgentP3
+
+# This funciton runs the environment for 100 steps and prints the final performance of the agent
 
 
 def test_environment():
@@ -11,10 +13,6 @@ def test_environment():
     # Add the agent to the environment
     env.add_thing(agent)
 
-    # Add other things to the environment (students, IT staff, office managers)
-    # env.add_thing(Student(), location)
-    # env.add_thing(ITStaff(), location)
-    # env.add_thing(OfficeManager(), location)
 
     # Add 10 things to the environment in random locations
     from agents import Student, ITStaff, OfficeManager
