@@ -6,11 +6,9 @@ Mackenzie Beck and Jeremmy
 
 
 TASKS:
-
 Mackenzie 
-1. Notebook for task 1
-2. task 3
-notebook for task 3
+1. Part 3
+2. Part 2
 
 Jeremmy
 1. task 2 
