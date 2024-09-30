@@ -50,7 +50,7 @@ class Environment:
         for step in range(steps):
             if self.is_done():
                 return
-            print("step {0}:".format(step+1))
+            print("Step {0}:".format(step+1))
             self.step()
 
   def add_thing(self, thing, location=None):

@@ -7,56 +7,58 @@ import random
 class House(Environment):
     def __init__(self):
         super().__init__()
-        self.things = [] # Empty list of things in the environment.
+        self.things = [] #Empty list of things in the environment, including agents.
     
     def percept(self, agent):
         #Returns a list of things that are in our agent's location.
         things = self.list_things_at(agent.location)
         return agent.location, things
     
-    #POSSIBLE ISSUE IN THIS METHOD
-    def execute_action(self, agent, action):
-        #Check if agent alive, if so, execute action.
+    def execute_action(self, agent, action, things):
+        #Checks if agent is alive. If so, execute action.
         if self.is_agent_alive(agent):
-            percepted = self.list_things_at(agent.location)
             marked = []
             #Moving loses 1 performance.
             if action == 'MoveRight':
+                print(f'{agent} moved right.')
                 self.moveToRight(agent)
                 agent.performance -= 1
             elif action == 'MoveLeft':
+                print(f'{agent} moved left.')
                 self.moveToLeft(agent)
                 agent.performance -= 1
-            #Drinking milk gains 5 performance and eliminates the milk from the environment.
-            elif action == 'Drink':
-                for thing in percepted:
-                    if thing.name == 'Milk':
+            else:
+                for thing in things:
+                    #Drinking milk gains 5 performance and eliminates the milk from the environment.
+                    if action == 'Drink' and thing.name == 'milk':
+                        print(f'{agent} drank the Milk.')
                         agent.performance += 5
                         marked.append(thing)
-            #Eating a mouse gains 10 performance and eliminates the mouse from the environment. Only a strong cat can catch a mouse.
-            elif action == 'Eat' and agent.performance >= 3:
-                for thing in percepted:
-                    if thing.name == 'Mouse':
+                    #Eating a mouse gains 10 performance and eliminates the mouse from the environment. Only a strong cat can do this.
+                    elif action == 'Eat' and thing.name == 'mouse' and agent.performance >= 3:
+                        print(f'{agent} ate the Mouse.')
                         agent.performance += 10
                         marked.append(thing)
-            #Fighting a dog and winning (super strong cat) gains 20 performance and eliminates the dog from the environment.
-            elif action == 'Fight' and agent.performance >= 10:
-                for thing in percepted:
-                    if thing.name == 'Dog':
-                        agent.performance += 20
-                        marked.append(thing)
-            #Fighting a dog and losing (weak cat) loses 10 performance and the dog remains in the environment.
-            elif action == 'Fight' and agent.performance < 10:
-                for thing in percepted:
-                    if thing.name == 'Dog':
-                        agent.performance -= 10
+                    #Fighting a dog and winning (very strong cat) gains 20 performance. Losing (weak cat) loses 10 performance.
+                    elif action == 'Fight' and thing.name == 'dog':
+                        if agent.performance >= 10:
+                            print(f'{agent} fought the Dog and won.')
+                            agent.performance += 20
+                            marked.append(thing)
+                        else:
+                            print(f'{agent} fought the Dog and lost.')
+                            agent.performance -= 10
+                    else:
+                        print(f'There was nothing to {action}.')
+                if len(things) == 0:
+                    print(f'There was nothing to {action}.')
             #Removal of marked things from the environment.
             for thing in marked:
                 self.remove_thing(thing)
             self.update_agent_alive(agent)
     
     def default_location(self, thing):
-        """Agents start in either location at random."""
+        #Thing starts at a random location in the House.
         return random.choice([loc_A, loc_B, loc_C, loc_D, loc_E])
     
     #Returns true if all agents in the environment are dead.
@@ -70,19 +72,23 @@ class House(Environment):
             for agent in self.things:
                 if isinstance(agent, Agent):
                     if agent.alive:
-                        action=agent.program(self.percept(agent))
-                        print("{} agent percepted {} at {}.".format(agent, self.percept(agent)[1], self.percept(agent)[0]))
-                        print("Agent decided to {}.".format(action))
-                        actions.append((agent, action))
+                        percepted = self.percept(agent)
+                        action = agent.program(percepted)
+                        things = percepted[1]
+                        location = percepted[0]
+                        print("{} percepted {} at {}.".format(agent, things, location))
+                        print("{} decided to {}.".format(agent, action))
+                        actions.append((agent, action, things))
                     else:
                         actions.append("")
-            for (agent, action) in actions:
-                self.execute_action(agent, action)
-                print(agent.performance)
+            #Execution of actions.
+            for (agent, action, things) in actions:
+                self.execute_action(agent, action, things)
+                print(f'Remaining Performance: {agent.performance}')
         else:
-          print("There is no one here who could work...")
+          print("There is no living agents.")
 
-    #run() inherited from Environment
+    #run() inherited from Environment.
 
     #Adding the thing in a random location.
     def add_thing(self, thing):
@@ -154,7 +160,6 @@ class House(Environment):
             else:
                 thing.location = loc_D
         
-
     #Output the list of things with their locations
     def list_things_location(self):
         for thing in self.things:
@@ -176,4 +181,4 @@ class House(Environment):
     def update_agent_alive(self, agent):
         if agent.performance <= 0:
             agent.alive = False
-            print("Agent {} is dead.".format(agent))
+            print("{} is dead.".format(agent))
