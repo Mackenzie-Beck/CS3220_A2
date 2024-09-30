@@ -40,6 +40,7 @@ def test_environment():
 
 
     # Run the environment for a certain number of steps
+    print("-----------------------------------Begin Simulation-----------------------------------")
     for _ in range(100):  # Run for 100 steps
         env.step()
         if not agent.alive:
