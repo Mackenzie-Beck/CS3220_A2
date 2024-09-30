@@ -1,9 +1,8 @@
-from thingClass import Thing
+from food import Food
 
-class Milk(Thing):
+class Milk(Food):
     def __init__(self, weight=0,location=None):
-        self.alive = False
-        self.name = 'milk'
+        Food.__init__(self)
         self.calories = 150
         self.weight = weight
         self.location = location
