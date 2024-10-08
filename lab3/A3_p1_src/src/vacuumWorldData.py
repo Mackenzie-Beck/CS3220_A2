@@ -12,7 +12,8 @@ CDR=(vacuumWorldStates[1],vacuumWorldStates[0],agenLocations[1])
 CCL=(vacuumWorldStates[1],vacuumWorldStates[1],agenLocations[0])
 CCR=(vacuumWorldStates[1],vacuumWorldStates[1],agenLocations[1])
 
-vacuumWorld = (dict(
+#FIXED
+vacuumWorld = dict(
     DDL=dict(Suck=CDL,Left=DDL, Right=DDR),
     DDR=dict(Suck=DCR, Left=DDL, Right=DDR),
     DCL=dict(Suck=CCL, Left=DCL, Right=DCR),
@@ -21,7 +22,7 @@ vacuumWorld = (dict(
     CDR=dict(Suck=CCR, Left=CDL, Right=CDR),
     CCL=dict(Suck=CCL, Left=CCL, Right=CCR),
     CCR=dict(Suck=CCR, Left=CCL, Right=CCR)
-))
+)
 
 results=[dict(Suck=CDL,Left=DDL, Right=DDR),dict(Suck=DCR, Left=DDL, Right=DDR),dict(Suck=CCL, Left=DCL, Right=DCR),dict(Suck=DCR, Left=DCL, Right=DCR),dict(Suck=CDL, Left=CDL, Right=CDR),dict(Suck=CCR, Left=CDL, Right=CDR),dict(Suck=CCL, Left=CCL, Right=CCR),dict(Suck=CCR, Left=CCL, Right=CCR)]
 
