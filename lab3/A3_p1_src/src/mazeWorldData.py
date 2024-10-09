@@ -1,9 +1,17 @@
 from MazeMapData import *
 import random
 
-mazeWorldStates = [coord for coord in mazeLocations]
+keyList = [state for state in mazeData.keys()]
 
-agentFacing = ['North', 'East', 'South', 'West']
+agentAction = ['Left', 'Advance', 'Right']
 
-keyList = [(coord,direction) for coord in mazeLocations for direction in agentFacing]
+result = []
 
+def makeData():
+    d1 = {}
+    for i in range(len(keyList)):
+        d1[keyList[i]] = mazeData[keyList[i]]
+    return d1
+
+def mazeStateLocations():
+    return mazeLocations

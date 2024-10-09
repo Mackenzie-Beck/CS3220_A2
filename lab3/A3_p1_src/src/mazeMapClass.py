@@ -2,20 +2,22 @@ from graphClass import Graph
 
 class mazeMap(Graph):
     def __init__(self, graph_dict = None, locations = None):
+        self.g = dict()
         super().__init__(graph_dict)
+        self.make_graph()
         self.locations = locations
     
     def getLocation(self,a):
         return self.locations.get(a)
     
-    #Overrides
+    #Overriden
     def make_graph(self):
-        for a in list(self.graph_dict.keys()):
-            for (b, direction) in self.graph_dict[a].items():
-                self.connect(b, a, direction)
-    def connect(self, A, B, direction):
-        if direction == 'North': direction = 'South'
-        elif direction == 'South': direction = 'North'
-        elif direction == 'East': direction = 'West'
-        elif direction == 'West': direction = 'East'
-        self.graph_dict.setdefault(A, {})[B] = direction
+        for a in self.graph_dict.keys():
+            for (act, b) in self.graph_dict[a].items():
+                self.connect(a, b, 1)
+    def connect(self, A, B, distance):
+        self.g.setdefault(A, {})[B] = distance
+    '''
+    def nodes(self):
+        return [k for k in self.graph_dict.keys()]
+    '''

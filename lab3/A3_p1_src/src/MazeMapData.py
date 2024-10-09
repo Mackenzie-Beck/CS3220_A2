@@ -17,6 +17,8 @@ mazeData = dict(
 )
 '''
 
+#Great for project. Not so much for this assignment.
+'''
 mazeData = dict(
      A = dict(B = 'East'),
      C = dict(B = 'West'),
@@ -33,6 +35,81 @@ mazeData = dict(
     AC = dict(U = 'South', AB = 'West', AD = 'East'),
     AE = dict(V = 'South', AD = 'West', AF = 'East')
 )
+'''
+
+
+mazeData = dict(
+     A = dict(B = 'Advance'),
+     B = dict(A = 'Left', F = 'Advance', C = 'Right'),
+     C = dict(B = 'Advance'),
+     D = dict(M = 'Advance', E = 'Right'),
+     E = dict(D = 'Left', I = 'Advance', F = 'Right'),
+     F = dict(G = 'Left', B = 'Advance', E = 'Right'),
+     G = dict(F = 'Left', L = 'Advance', H = 'Right'),
+     H = dict(G = 'Left', N = 'Advance'),
+     I = dict(O = 'Left', J = 'Advance', E = 'Right'),
+     J = dict(I = 'Advance'),
+     K = dict(L = 'Advance'),
+     L = dict(G = 'Left', K = 'Advance', Q = 'Right'),
+     M = dict(D = 'Advance'),
+     N = dict(H = 'Advance'),
+     O = dict(T = 'Left', P = 'Advance', I = 'Right'),
+     P = dict(O = 'Left', AD = 'Advance', Q = 'Right'),
+     Q = dict(L = 'Left', P = 'Advance', W = 'Right'),
+     R = dict(X = 'Advance'),
+     S = dict(AA = 'Advance'),
+     T = dict(Y = 'Left', U = 'Advance', O = 'Right'),
+     U = dict(T = 'Left', AC = 'Advance'),
+     V = dict(AE = 'Advance', W = 'Right'),
+     W = dict(Q = 'Left', V = 'Advance', Z = 'Right'),
+     X = dict(Y = 'Left', R = 'Advance'),
+     Y = dict(T = 'Left', X = 'Advance'),
+     Z = dict(AA = 'Advance', W = 'Right'),
+    AA = dict(S = 'Advance', Z = 'Right'),
+    AB = dict(AC = 'Advance'),
+    AC = dict(AD = 'Left', U = 'Advance', AB = 'Right'),
+    AD = dict(AE = 'Left', P = 'Advance', AC = 'Right'),
+    AE = dict(AF = 'Left', V = 'Advance', AD = 'Right'),
+    AF = dict(AE = 'Advance')
+)
+
+
+'''
+mazeData = dict(
+     A = {'Advance' : 'B'},
+     B = {'Left' : 'A', 'Advance' : 'F', 'Right' : 'C'},
+     C = {'Advance' : 'B'},
+     D = {'Advance' : 'M', 'Right' : 'E'},
+     E = {'Left' : 'D', 'Advance' : 'I', 'Right' : 'F'},
+     F = {'Left' : 'G', 'Advance' : 'B', 'Right' : 'E'},
+     G = {'Left' : 'F', 'Advance' : 'L', 'Right' : 'H'},
+     H = {'Left' : 'G', 'Advance' : 'N'},
+     I = {'Left' : 'O', 'Advance' : 'J', 'Right' : 'E'},
+     J = {'Advance' : 'I'},
+     K = {'Advance' : 'L'},
+     L = {'Left' : 'G', 'Advance' : 'K', 'Right' : 'Q'},
+     M = {'Advance' : 'D'},
+     N = {'Advance' : 'H'},
+     O = {'Left' : 'T', 'Advance' : 'P', 'Right' : 'I'},
+     P = {'Left' : 'O', 'Advance' : 'AD', 'Right' : 'Q'},
+     Q = {'Left' : 'L', 'Advance' : 'P', 'Right' : 'W'},
+     R = {'Advance' : 'X'},
+     S = {'Advance' : 'AA'},
+     T = {'Left' : 'Y', 'Advance' : 'U', 'Right' : 'O'},
+     U = {'Left' : 'T', 'Advance' : 'AC'},
+     V = {'Advance' : 'AE', 'Right' : 'W'},
+     W = {'Left' : 'Q', 'Advance' : 'V', 'Right' : 'Z'},
+     X = {'Left' : 'Y', 'Advance' : 'R'},
+     Y = {'Left' : 'T', 'Advance' : 'X'},
+     Z = {'Advance' : 'AA', 'Right' : 'W'},
+    AA = {'Advance' : 'S', 'Right' : 'Z'},
+    AB = {'Advance' : 'AC'},
+    AC = {'Left' : 'AD', 'Advance' : 'U', 'Right' : 'AB'},
+    AD = {'Left' : 'AE', 'Advance' : 'P', 'Right' : 'AC'},
+    AE = {'Left' : 'AF', 'Advance' : 'V', 'Right' : 'AD'},
+    AF = {'Advance' : 'AE'}
+)
+'''
 
 mazeLocations = dict(
      A = (0,0),   B = (7,0),    C = (13,0),
@@ -45,5 +122,5 @@ mazeLocations = dict(
      V = (9,8),   W = (11,8),   X = (1,10),
      Y = (3,10),  Z = (11,10), AA = (13,10),
     AB = (1,12), AC = (5,12),  AD = (7,12),
-    AE = (9,12), AF = (14,12)  
+    AE = (9,12), AF = (14,12),
 )
