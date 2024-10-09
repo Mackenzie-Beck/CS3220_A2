@@ -1,3 +1,4 @@
+'''
 mazeData = dict(
      A = dict(B = 7),
      C = dict(B = 6),
@@ -13,6 +14,24 @@ mazeData = dict(
     AA = dict(S = 3, Z = 2),
     AC = dict(U = 4, AB = 4, AD = 2),
     AE = dict(V = 4, AD = 2, AF = 5)
+)
+'''
+
+mazeData = dict(
+     A = dict(B = 'East'),
+     C = dict(B = 'West'),
+     F = dict(B = 'South', E = 'West', G = 'East'),
+     D = dict(E = 'East', M = 'North'),
+     H = dict(G = 'West', N = 'North'),
+     I = dict(E = 'South', J = 'East', O = 'North'),
+     L = dict(G = 'South', K = 'West', Q = 'North'),
+     P = dict(O = 'West', Q = 'East', AD = 'North'),
+     T = dict(O = 'South', U = 'East', Y = 'North'),
+     W = dict(Q = 'South', V = 'West', Z = 'North'),
+     X = dict(R = 'South', Y = 'East'),
+    AA = dict(S = 'South', Z = 'West'),
+    AC = dict(U = 'South', AB = 'West', AD = 'East'),
+    AE = dict(V = 'South', AD = 'West', AF = 'East')
 )
 
 mazeLocations = dict(
