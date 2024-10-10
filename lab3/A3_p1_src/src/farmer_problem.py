@@ -1,10 +1,29 @@
 from problemClass import Problem
+from graphProblemClass import GraphProblem
 
-class FarmerProblem(Problem):
+class FarmerProblem(GraphProblem):
     def __init__(self):
         initial_state = ('L', 'L', 'L', 'L') # (farmer, goat, cabbage, wolf)
         goal_state = ('R', 'R', 'R', 'R')
-        super().__init__(initial_state, goal_state)
+        graph = {
+            ('L', 'L', 'L', 'L'): {('R', 'R', 'L', 'L'): 1, ('R', 'L', 'R', 'L'): 1, ('R', 'L', 'L', 'R'): 1, ('R', 'L', 'L', 'L'): 1},
+            ('R', 'R', 'L', 'L'): {('L', 'L', 'L', 'L'): 1, ('L', 'R', 'R', 'L'): 1, ('L', 'R', 'L', 'R'): 1, ('L', 'R', 'L', 'L'): 1},
+            ('R', 'L', 'R', 'L'): {('L', 'L', 'R', 'L'): 1, ('L', 'L', 'L', 'L'): 1, ('L', 'L', 'R', 'R'): 1, ('L', 'L', 'R', 'L'): 1},
+            ('R', 'L', 'L', 'R'): {('L', 'L', 'L', 'R'): 1, ('L', 'L', 'R', 'R'): 1, ('L', 'L', 'L', 'L'): 1, ('L', 'L', 'L', 'R'): 1},
+            ('R', 'L', 'L', 'L'): {('L', 'L', 'L', 'L'): 1, ('L', 'L', 'R', 'L'): 1, ('L', 'L', 'L', 'R'): 1, ('L', 'L', 'L', 'L'): 1},
+            ('L', 'L', 'R', 'L'): {('R', 'L', 'R', 'L'): 1, ('R', 'R', 'R', 'L'): 1, ('R', 'L', 'L', 'L'): 1, ('R', 'L', 'R', 'R'): 1},
+            ('L', 'L', 'L', 'R'): {('R', 'L', 'L', 'R'): 1, ('R', 'R', 'L', 'R'): 1, ('R', 'L', 'L', 'L'): 1, ('R', 'L', 'R', 'R'): 1},
+            ('L', 'L', 'L', 'L'): {('R', 'L', 'L', 'L'): 1, ('R', 'R', 'L', 'L'): 1, ('R', 'L', 'R', 'L'): 1, ('R', 'L', 'L', 'R'): 1},
+            ('R', 'R', 'R', 'L'): {('L', 'R', 'R', 'L'): 1, ('L', 'L', 'R', 'L'): 1, ('L', 'R', 'L', 'L'): 1, ('L', 'R', 'R', 'R'): 1},
+            ('R', 'R', 'L', 'R'): {('L', 'R', 'L', 'R'): 1, ('L', 'L', 'L', 'R'): 1, ('L', 'R', 'R', 'R'): 1, ('L', 'R', 'L', 'L'): 1},
+            ('R', 'L', 'R', 'R'): {('L', 'L', 'R', 'R'): 1, ('L', 'L', 'L', 'R'): 1, ('L', 'L', 'R', 'L'): 1, ('L', 'L', 'R', 'R'): 1},
+            ('L', 'R', 'R', 'L'): {('R', 'R', 'R', 'L'): 1, ('R', 'L', 'R', 'L'): 1, ('R', 'R', 'L', 'L'): 1, ('R', 'R', 'R', 'R'): 1},
+            ('L', 'R', 'L', 'R'): {('R', 'R', 'L', 'R'): 1, ('R', 'L', 'L', 'R'): 1, ('R', 'R', 'R', 'R'): 1, ('R', 'R', 'L', 'L'): 1},
+            ('L', 'L', 'R', 'R'): {('R', 'L', 'R', 'R'): 1, ('R', 'L', 'L', 'R'): 1, ('R', 'L', 'R', 'L'): 1, ('R', 'L', 'L', 'L'): 1},
+            ('R', 'R', 'R', 'R'): {('L', 'R', 'R', 'R'): 1, ('L', 'L', 'R', 'R'): 1, ('L', 'R', 'L', 'R'): 1, ('L', 'R', 'R', 'L'): 1},
+            ('L', 'R', 'R', 'R'): {('R', 'R', 'R', 'R'): 1, ('R', 'L', 'R', 'R'): 1, ('R', 'R', 'L', 'R'): 1, ('R', 'R', 'R', 'L'): 1}
+        }
+        super().__init__(initial_state, goal_state, graph)
         self.goal_state = goal_state
 
     def actions(self, state):
