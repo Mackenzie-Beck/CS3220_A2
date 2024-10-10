@@ -3,6 +3,7 @@ import collections
 from problemSolvingAgentProgramClass import SimpleProblemSolvingAgentProgram
 from graphProblemClass import GraphProblem
 
+
 class deliveryProblemSolvingAgent(SimpleProblemSolvingAgentProgram):
   def __init__(self, initial_state=None, dataGraph=None, goal=None, program=None):
     super().__init__(initial_state)
