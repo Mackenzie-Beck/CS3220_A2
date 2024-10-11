@@ -5,8 +5,6 @@ keyList = [state for state in mazeData.keys()]
 
 agentAction = ['Left', 'Advance', 'Right']
 
-result = []
-
 def makeData():
     d1 = {}
     for i in range(len(keyList)):
