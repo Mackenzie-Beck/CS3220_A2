@@ -63,7 +63,7 @@ def BestFirstSearchAgentProgramForShow(f=None):
         nodeColors[node.state] = "red"
         steps += 1
         allNodeColors.append(dict(nodeColors))
-        #print(node)
+        print('Frontier:',node)
 
         if problem.goal_test(node.state):
           nodeColors[node.state] = "green"
