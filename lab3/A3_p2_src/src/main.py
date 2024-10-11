@@ -11,7 +11,7 @@ from deliveryProblemSolvingAgentProClass import *
 
 
 
-p3map = myMap(p3world, create_room_tuples())
+p3map = myMap(p3world, create_room_dict())
 simple_visualization(p3map)
 
 
@@ -27,12 +27,13 @@ goal_rooms.append(initial)
 
 p3problem = GraphProblem(initial, goal_rooms,p3map)
 
-##print(p3problem.initial)
-##print(p3problem.goal)
-##print(p3problem.actions('Room1_A'))
-bfs_program = BestFirstSearchAgentProgramForShow()
+
+
+bfs_program = BestFirstSearchAgentProgram()
+bfs_show_program = BestFirstSearchAgentProgramForShow()
 
 
 
-dps = deliveryProblemSolvingAgentPro(initial, p3map, goal_rooms, bfs_program)
+dps = deliveryProblemSolvingAgentPro(initial, p3map, goal_rooms, bfs_show_program)
 dps.run()
+

@@ -11,16 +11,16 @@ p3world = {
     r2c: {r1c: 1, r2b: 1}
 }
 
-def create_room_tuples():
+def create_room_dict():
     """
-    Create a list of tuples where the first entry is a room object and the second is a coordinate.
+    Create a dictionary where the key is a room object and the value is a coordinate.
     
     Returns:
-    list: A list of tuples containing the room and the coordinate.
+    dict: A dictionary containing the room as the key and the coordinate as the value.
     """
     coordinates = [(0, 0), (0, 1), (0, 2), (1, 0), (1, 1), (1, 2)]
     rooms = [r1a, r1b, r1c, r2a, r2b, r2c]
-    return [(room, coord) for room, coord in zip(rooms, coordinates)]
+    return {room: coord for room, coord in zip(rooms, coordinates)}
 
 
 
