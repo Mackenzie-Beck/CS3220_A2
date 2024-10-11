@@ -37,6 +37,9 @@ class deliveryProblemSolvingAgent(SimpleProblemSolvingAgentProgram):
 
   def search(self, problem):
     seq = self.program(problem)
+    print("--------------------------------")
+    print(seq)
+    print("--------------------------------")
     solution=self.actions_path(seq.path())
     print("Solution (a sequence of actions) from the initial state to a goal: {}".format(solution))
     return solution

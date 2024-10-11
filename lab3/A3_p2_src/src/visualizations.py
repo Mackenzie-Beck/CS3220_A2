@@ -1,20 +1,23 @@
 import networkx as nx
 import matplotlib.pyplot as plt
+from p3worlddata import p3world, create_room_tuples
 
-def simple_visualization(data):
-  G = nx.Graph(data.graph_dict)
-  #print(data.locations.items())
-  nodes_colors= ['pink' for node in data.graph_dict.keys()]
-  # set the size of the plot
-  plt.figure(figsize=(20, 15))
-  #draw the graph (both nodes and edges) with locations from romania_locations
-  nx.draw(G, pos={k: data.locations[k] for k in G.nodes()},
-            node_color=nodes_colors, linewidths=0.3, edgecolors='k')
-  # displaying the title
-  plt.title('Delivery graph')
-  node_label_pos = { k:[v[0],v[1]]  for k,v in data.locations.items() }
-  print(node_label_pos)
-  # draw labels for nodes
-  nx.draw_networkx_labels(G, pos=node_label_pos, font_size=15)
-  #nx.draw_networkx_labels(G,node_label_pos, G.nodes, font_color='r')
-  plt.show()
+def simple_visualization(data=None):
+    #create the graph using p3world dict
+    G = nx.Graph(p3world)
+    room_tuples = create_room_tuples()
+    
+    # set the size of the plot
+    plt.figure(figsize=(10, 8))
+    
+    # draw the graph
+    nx.draw(G, pos={room: coord for room, coord in room_tuples},
+            node_color='pink', linewidths=0.3, edgecolors='k', node_size=3000)
+    
+    # displaying the title
+    plt.title('Room Layout')
+    
+    # draw labels for nodes
+    nx.draw_networkx_labels(G, pos={room: coord for room, coord in room_tuples}, font_size=10)
+    
+    plt.show()
