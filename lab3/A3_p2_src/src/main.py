@@ -30,7 +30,7 @@ p3problem = GraphProblem(initial, goal_rooms,p3map)
 ##print(p3problem.initial)
 ##print(p3problem.goal)
 ##print(p3problem.actions('Room1_A'))
-bfs_program = BestFirstSearchAgentProgram()
+bfs_program = BestFirstSearchAgentProgramForShow()
 
 
 
