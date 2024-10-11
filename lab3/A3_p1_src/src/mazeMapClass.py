@@ -17,7 +17,5 @@ class mazeMap(Graph):
                 self.connect(a, b, 1)
     def connect(self, A, B, distance):
         self.g.setdefault(A, {})[B] = distance
-    '''
     def nodes(self):
         return [k for k in self.graph_dict.keys()]
-    '''
