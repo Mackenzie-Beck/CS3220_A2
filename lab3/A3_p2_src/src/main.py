@@ -16,22 +16,23 @@ simple_visualization(p3map)
 
 
 
-initial_states = ['Room1_A', 'Room1_B']
+initial_states = ['Room1_A', 'Room2_A']
 
 import random
 
 initial = random.choice(initial_states)
 
-packages_rooms = get_random_rooms()
+goal_rooms = get_random_rooms()
+goal_rooms.append(initial)
 
-p3problem = GraphProblem(initial, 'Room2_C',p3map)
+p3problem = GraphProblem(initial, goal_rooms,p3map)
 
 ##print(p3problem.initial)
 ##print(p3problem.goal)
 ##print(p3problem.actions('Room1_A'))
-bfs_program = BestFirstSearchAgentProgramForShow()
+bfs_program = BestFirstSearchAgentProgram()
 
 
 
-dps = deliveryProblemSolvingAgentPro(initial, p3map, packages_rooms, bfs_program)
+dps = deliveryProblemSolvingAgentPro(initial, p3map, goal_rooms, bfs_program)
 dps.run()
