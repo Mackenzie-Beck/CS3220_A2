@@ -2,7 +2,7 @@ from farmer_problem import FarmerProblem
 from agentsPrograms import BestFirstSearchAgentProgram
 import networkx as nx
 import matplotlib.pyplot as plt
-from visualGraph import drawGraph
+from visualGraph1 import drawGraph
 
 def simulate_farmer_problem():
     # Create an instance of the FarmerProblem
@@ -32,7 +32,8 @@ def simulate_farmer_problem():
         print("No solution found.")
 
     # Visualize the graph
-    drawGraph(problem, nodeColors={}, nodeStatuses=node_statuses)
+    drawGraph(problem, nodeColors={}, steps=0)
+    print(node_statuses)
 
 if __name__ == "__main__":
     simulate_farmer_problem()
