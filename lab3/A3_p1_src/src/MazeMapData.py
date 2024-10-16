@@ -37,7 +37,7 @@ mazeData = dict(
 )
 '''
 
-
+'''
 mazeData = dict(
      A = dict(B = 'Advance'),
      B = dict(A = 'Left', F = 'Advance', C = 'Right'),
@@ -72,9 +72,8 @@ mazeData = dict(
     AE = dict(AF = 'Left', V = 'Advance', AD = 'Right'),
     AF = dict(AE = 'Advance')
 )
-
-
 '''
+
 mazeData = dict(
      A = {'Advance' : 'B'},
      B = {'Left' : 'A', 'Advance' : 'F', 'Right' : 'C'},
@@ -109,7 +108,6 @@ mazeData = dict(
     AE = {'Left' : 'AF', 'Advance' : 'V', 'Right' : 'AD'},
     AF = {'Advance' : 'AE'}
 )
-'''
 
 mazeLocations = dict(
      A = (0,0),   B = (7,0),    C = (13,0),

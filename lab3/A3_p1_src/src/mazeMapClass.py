@@ -19,9 +19,11 @@ class mazeMap(Graph):
         self.g.setdefault(A, {})[B] = distance
 
     def nodes(self):
-        return [k for k in self.g.keys()]
+        s1 = set([k for k in self.graph_dict.keys()])
+        s2 = set([v2 for v in self.graph_dict.values() for k2, v2 in v.items()])
+        nodes = s1.union(s2)
+        return list(nodes)
     
-    '''
     def get(self, a, b=None):
         """Return a link distance or a dict of {node: distance} entries.
         .get(a,b) returns the distance or None;
@@ -31,4 +33,3 @@ class mazeMap(Graph):
             return links
         else:
             return links.get(b)
-    '''

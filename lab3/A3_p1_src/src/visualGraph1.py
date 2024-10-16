@@ -30,7 +30,7 @@ def drawGraph(gData, nodeColors,steps):
   node_label_handles = nx.draw_networkx_labels(G, pos=node_label_pos, font_size=8)
   
   # add edge lables to the graph
-  nx.draw_networkx_edge_labels(G, pos=gData.locations, edge_labels=edge_weights, font_size=8, font_color='r')
+  nx.draw_networkx_edge_labels(G, pos=gData.locations, edge_labels=edge_weights, font_size=8, font_color='r', label_pos = 0.25) #LABEL_POS ADDED
   # displaying the title
   plt.title('Search graph')
   # add a legend
