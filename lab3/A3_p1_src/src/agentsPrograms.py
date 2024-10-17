@@ -67,8 +67,7 @@ def BestFirstSearchAgentProgramForShow(f=None):
           nodeColors[node.state] = "green"
           steps += 1
           allNodeColors.append(dict(nodeColors))
-          return (node,steps,allNodeColors)
-          
+          return (node,steps,allNodeColors)        
 
         #reached.add(node.state)
         for child in node.expand(problem):

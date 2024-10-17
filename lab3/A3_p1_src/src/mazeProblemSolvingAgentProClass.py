@@ -12,12 +12,13 @@ class MazeProblemSolvingAgentPro(MazeProblemSolvingAgent):
         return eval(input('Percept={}; action? '.format(percept)))
 
     self.program = program
-    #self.performance = 2 # 16
 
   def search(self, problem):
     seq = self.program(problem)
     solution=self.actions_path(seq.path())
     print("Solution (a sequence of actions) from the initial state to a goal: {}".format(solution))
+    if len(seq.path()) >= self.performance:
+        print("Agent will run out of performance taking this path!")
     return solution
   
   def actions_path(self, p):
