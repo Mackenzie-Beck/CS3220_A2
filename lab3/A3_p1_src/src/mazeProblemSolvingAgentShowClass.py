@@ -10,6 +10,8 @@ class MazeProblemSolvingAgentDraw(MazeProblemSolvingAgentPro):
       #print(allNodeColors)
       solution=self.actions_path(seq.path())
       print("Solution (a sequence of actions) from the initial state to a goal: {}".format(solution))
+      if len(seq.path()) >= self.performance:
+        print("Agent will run out of performance taking this path!")
       return (solution,steps, allNodeColors)
 
     def work(self, percept):
@@ -23,5 +25,5 @@ class MazeProblemSolvingAgentDraw(MazeProblemSolvingAgentPro):
             #print(allNodeColors[steps-1])
             if not self.seq:
                 return None
-            drawGraph(self.dataGraph, allNodeColors[steps-1], steps)
+            drawGraph(self.dataGraph, allNodeColors[steps-1], steps) 
         return self.seq

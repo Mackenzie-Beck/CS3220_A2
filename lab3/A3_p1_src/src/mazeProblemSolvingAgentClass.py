@@ -6,6 +6,7 @@ class MazeProblemSolvingAgent(SimpleProblemSolvingAgentProgram):
         super().__init__(initial_state)
         self.dataGraph = dataGraph
         self.goal = goal
+        self.performance = len(dataGraph.nodes()) // 2 # 16 performance
 
     def update_state(self, state, percept):
         return percept
@@ -23,3 +24,7 @@ class MazeProblemSolvingAgent(SimpleProblemSolvingAgentProgram):
     
     def search(self, problem):
         pass
+
+    def new_goal(self, initial_state, goal):
+        super().__init__(initial_state)
+        self.goal = goal

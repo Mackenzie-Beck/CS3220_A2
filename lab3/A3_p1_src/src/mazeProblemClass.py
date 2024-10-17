@@ -23,3 +23,13 @@ class MazeProblem(Problem):
         #An action cost function
         #return cost_so_far + self.result(A, action)
         return cost_so_far + self.graph.get(A, B)
+    
+    def goal_test(self, state):
+        """Return True if the state is a goal. The default method compares the
+        state to self.goal or checks for state in self.goal if it is a
+        list, as specified in the constructor. Override this method if
+        checking against a single self.goal is not enough."""
+        if isinstance(self.goal, list):
+            return self.goal.count(state)>0
+        else:
+            return state == self.goal
