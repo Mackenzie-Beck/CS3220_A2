@@ -131,3 +131,26 @@ def BreadthFirstSearchGraph():
     return None
 
   return program
+
+def UniformCostSearchAgentProgram():
+    def program(problem):
+        node = Node(problem.initial)
+        frontier = PriorityQueue()
+        frontier.put((node.path_cost, node))
+        reached = {problem.initial: node}
+
+        while frontier:
+            node = frontier.get()[1]
+            
+            if problem.goal_test(node.state):
+                return node
+
+            for child in node.expand(problem):
+                s = child.state
+                if s not in reached or child.path_cost < reached[s].path_cost:
+                    reached[s] = child
+                    frontier.put((child.path_cost, child))
+        
+        return None
+
+    return program
