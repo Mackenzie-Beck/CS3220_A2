@@ -1,6 +1,6 @@
 # Task 4
 
-from agents import ProblemSolvingMazeAgentUCS, ProblemSolvingMazeAgentBREADTH_FS, ProblemSolvingMazeAgentBFS
+from agents import ProblemSolvingMazeAgentBREADTH_FS, ProblemSolvingMazeAgentBFS
 from mazeGraphClass import mazeGraph
 from mazeProblemClass import MazeProblem
 from myMazeData import makeMaze, defineMazeActions, makeMazeTransformationModel
