@@ -132,3 +132,58 @@ def BreadthFirstSearchGraph():
 
   return program
 
+def BreadthFirstSearchGraphForShow():
+   def program(problem):
+      steps = 0
+      allNodeColors = []
+      nodeColors = {k : 'white' for k in problem.graph.nodes()}
+
+      node = Node(problem.initial)
+      #early goal test
+      if problem.goal_test(node.state):
+        nodeColors[node.state] = "green"
+        steps += 1
+        allNodeColors.append(dict(nodeColors))
+        return (node,steps,allNodeColors)
+      
+      frontier = deque()#FIFO
+      frontier.append(node)
+
+      nodeColors[node.state] = "orange"
+      steps += 1
+      allNodeColors.append(dict(nodeColors))
+
+      reached = set()
+      reached.add(node.state)
+
+      while frontier:
+         node = frontier.popleft()#FIFO
+         print("The node {} is extracted from frontier:".format(node.state))
+         nodeColors[node.state] = "red"
+         steps += 1
+         allNodeColors.append(dict(nodeColors))
+
+         for child in node.expand(problem):
+            print("The child node {}.".format(child))
+            if problem.goal_test(child.state):
+               print("We have found our goal: {}".format(child.state))
+               nodeColors[child.state] = "green"
+               steps += 1
+               allNodeColors.append(dict(nodeColors))
+               return (child,steps,allNodeColors)
+            
+            if child.state not in reached:
+               reached.add(child.state)
+               frontier.append(child)
+         
+         # modify the color of explored nodes to blue
+         nodeColors[node.state] = "blue"
+         steps += 1
+         allNodeColors.append(dict(nodeColors))
+      print("No solution...")
+
+      return None,steps,allNodeColors
+   
+   return program
+
+        
