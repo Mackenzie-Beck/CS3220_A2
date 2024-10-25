@@ -15,3 +15,10 @@ def ProblemSolvingMazeAgentBREADTH_FS(initState,WorldGraph,goalState):
 
 def ProblemSolvingMazeAgentBREADTH_FSShow(initState,WorldGraph,goalState):
     return MazeProblemSolvingAgentProDraw(initState,WorldGraph,goalState,BreadthFirstSearchGraphForShow())
+
+def ProblemSolvingMazeAgentDFS(initState, WorldGraph, goalState):
+    return MazeProblemSolvingAgentPro(initState, WorldGraph, goalState, DepthFirstSearchGraph())
+
+def ProblemSolvingMazeAgentDLS(initState, WorldGraph, goalState, limit):
+    return MazeProblemSolvingAgentPro(initState, WorldGraph, goalState, LimitedDepthFirstSearchGraph(limit))
+
