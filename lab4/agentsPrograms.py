@@ -187,3 +187,68 @@ def BreadthFirstSearchGraphForShow():
    return program
 
         
+def DepthFirstSearchGraph():
+  def program(problem):
+    node = Node(problem.initial)
+    #early goal test
+    if problem.goal_test(node.state):
+      print("We have found our goal: {}".format (node.state))
+      return node
+    
+    frontier = deque()#LIFO
+    frontier.append(node)
+    reached = set()
+    reached.add(node.state)
+    
+    while frontier:
+      print("Reached: {} ".format(reached))
+      print("Frontier: {} ".format(frontier))
+      node = frontier.pop()#LIFO
+      print("The node {} is extracted from frontier:".format(node.state))
+      
+      for child in node.expand(problem):
+        print("The child node {}.".format(child))
+        if problem.goal_test(child.state):
+          print("We have found our goal: {}".format (child.state))
+          return child
+
+        if child.state not in reached:
+          reached.add(child.state)
+          frontier.append(child)
+    return None
+
+  return program
+
+
+
+def LimitedDepthFirstSearchGraph(limit):
+  def program(problem):
+    node = Node(problem.initial)
+    #early goal test
+    if problem.goal_test(node.state):
+      print("We have found our goal: {}".format (node.state))
+      return node
+    
+    frontier = deque([(node, 0)]) # LIFO, with depth
+    reached = set()
+    reached.add(node.state)
+    
+    while frontier:
+      print("Reached: {} ".format(reached))
+      print("Frontier: {} ".format(frontier))
+      node, depth = frontier.pop() # LIFO
+      print("The node {} is extracted from frontier at depth {}:".format(node.state, depth))
+      
+      if depth < limit:
+        for child in node.expand(problem):
+          print("The child node {}.".format(child))
+          if problem.goal_test(child.state):
+            print("We have found our goal: {}".format (child.state))
+            return child
+
+          if child.state not in reached:
+            reached.add(child.state)
+            frontier.append((child, depth + 1))
+    return None
+
+  return program
