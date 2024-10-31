@@ -40,8 +40,8 @@ def A_StarSearchAgentProgram(f=None):
     def program(problem):
 
       node = Node(problem.initial)
- 
       frontier = PriorityQueue()
+
       h=node.path_cost+round(f(node.state, problem.goal),3)
       frontier.put((h,node))
       reached = {problem.initial:node}
@@ -49,14 +49,18 @@ def A_StarSearchAgentProgram(f=None):
       totalExpansion = 0 #Added.
 
       while frontier:
-        print(frontier.queue)
+        print("Goal: ", problem.goal)
+        print("Frontier: ", frontier.queue)
+        if frontier.empty():
+          print("Frontier is empty")
+          return None
         node = frontier.get()[1]
         print("The node {} is extracted from frontier:".format(node.state))
 
         if problem.goal_test(node.state):
           print("We have found our goal: {}".format (node.state))
           print("Total expansions: {}".format(totalExpansion))
-          print("Total cost: {}".format(frontier.get()[0]))
+          #print("Total cost: {}".format(frontier.get()[0]))
           return node
 
         #reached.add(node.state)
@@ -72,9 +76,6 @@ def A_StarSearchAgentProgram(f=None):
         #Added.
         print("Current node has {} child nodes (expansions).".format(childExpansions))
         totalExpansion += childExpansions
-
-      print()
-
       return None
 
     return program

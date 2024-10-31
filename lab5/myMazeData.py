@@ -6,6 +6,7 @@ LEFT = 0
 UP = 1
 RIGHT = 2
 DOWN = 3
+FIGHT = 4
 
 # Actions dictionary
 actions_dict = {
@@ -13,6 +14,7 @@ actions_dict = {
     UP: 'up',
     RIGHT: 'right',
     DOWN: 'down',
+    FIGHT: 'fight',
 }
 
 def makeMaze(n,proba_0=0.2,proba_food=0.1):
@@ -131,6 +133,10 @@ def defineMazeAvailableActions(arr):
             mazeAvailableActions[i,j].remove(actions_dict[2])
           if arr[i,j-1]==0:
             mazeAvailableActions[i,j].remove(actions_dict[0])
+
+      # Add fight action if there is a ghost
+      if arr[i,j] == 3:
+        mazeAvailableActions.setdefault((i,j),[]).append(actions_dict[4])
         
   return mazeAvailableActions
 
@@ -164,6 +170,12 @@ def getFoodLocation(arr):
   y=np.where(arr == 2)[1][0]#1st food y
   return x,y
 
+def getAllFoodLocations(arr):
+    food_locations = []
+    food_indices = np.where(arr == 2)
+    for i in range(len(food_indices[0])):
+        food_locations.append((food_indices[0][i], food_indices[1][i]))
+    return food_locations
 
 
 

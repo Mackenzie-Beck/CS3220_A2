@@ -1,6 +1,7 @@
 import math
 from agentsPrograms import *
 from mazeProblemSolvingAgentProClass import MazeProblemSolvingAgentPro
+from manhattanDistance import *
 # from mazeProblemSolvingAgentProDrawClass import MazeProblemSolvingAgentProDraw
 
 def ProblemSolvingMazeAgentAStar(initState,WorldGraph,goalState):
@@ -16,3 +17,5 @@ def ProblemSolvingMazeAgentBFS(initState,WorldGraph,goalState):
 
 def ProblemSolvingMazeAgentBREADTH_FS(initState,WorldGraph,goalState):
     return MazeProblemSolvingAgentPro(initState,WorldGraph,goalState,BreadthFirstSearchGraph())
+
+
