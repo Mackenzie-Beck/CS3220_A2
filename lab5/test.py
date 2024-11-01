@@ -13,80 +13,30 @@ maze = makeMazeTransformationModel(mazeAvailableActs)
 mazeWorldGraph = mazeGraph(maze)
 
 initState = (0,0)
+finalState = (n-1, n-1)
+goalStates = getAllFoodLocations(a)
+goalStates.append(finalState)
 
-foodLocations = getAllFoodLocations(a)
-goalState = (n-1, n-1)  # Finish point
+a1 = ProblemSolvingMazeAgentAStarManhattan(initState, mazeWorldGraph, goalStates)
 
-
-# Find the most cost-optimal path to each food dot
-foodPaths = []
-currentState = initState
-
-
-for food in foodLocations:
-    print("food: ", food, "---------------------------------------------------------------------------------")
-    #mp = MazeProblem(currentState, food, mazeWorldGraph)
-    mazeAvailableActs = defineMazeAvailableActions(a)
-    maze = makeMazeTransformationModel(mazeAvailableActs)
-    mazeWorldGraph = mazeGraph(maze)
-    if food is not None:    
-        agent = ProblemSolvingMazeAgentAStarManhattan(currentState, mazeWorldGraph, food)
-        print("Food: ", food)
-        result = agent.run()  
-        print("result: ", result)
-        foodPaths.append(result)
-        currentState = food
-        a[food[0]][food[1]] = 1
+ghostLocations = getGhostLocations(a)
+s,p = a1.run(n, ghostLocations)
 
 
-
-
-# After collecting all food dots, find the path to the finish point
-print("Final path ------------------------------------------------------")
-print("currentState: ", currentState)
-mazeAvailableActs = defineMazeAvailableActions(a)
-maze = makeMazeTransformationModel(mazeAvailableActs)
-mazeWorldGraph = mazeGraph(maze)
-#mp_final = MazeProblem(currentState, goalState, mazeWorldGraph)
-agent_final = ProblemSolvingMazeAgentAStarManhattan(currentState, mazeWorldGraph, goalState)
-result = agent_final.run()  
-print("result: ", result)
-# print("Final path found: ", finalPath)
-
-
-# Combine all paths
-completePath = []
-
-for path in foodPaths:
-    completePath.append(path)
-completePath.append(result)
-
-
-
-print("Complete path: ", completePath)
-
-print(a)
+print(ghostLocations)
 draw_maze(a)
 
+
 import copy
+resolvedMaze=copy.deepcopy(a)
+i=3
+for path in p:
+  for node in path:
+     resolvedMaze[node.state[0],node.state[1]]=i
+  i+=1
 
 
+print(a)
+print(resolvedMaze)
 
-
-
-
-
-# Define a unique value to represent the path in the maze
-PATH_VALUE = 5
-
-# Create a copy of the maze to modify
-resolvedMaze = copy.deepcopy(a)
-
-# # Mark the path in the maze
-# for path in completePath:
-#     if path is not None:
-#         resolvedMaze[path.state[0], path.state[1]] = PATH_VALUE
-#         print(path.state)
-
-# # Draw the maze with the path
-# draw_maze(resolvedMaze)
+draw_maze(resolvedMaze)

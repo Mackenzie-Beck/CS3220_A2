@@ -1,7 +1,7 @@
 import numpy as np
 import math
 import random
-
+from manhattanDistance import *
 LEFT = 0
 UP = 1
 RIGHT = 2
@@ -14,7 +14,6 @@ actions_dict = {
     UP: 'up',
     RIGHT: 'right',
     DOWN: 'down',
-    FIGHT: 'fight',
 }
 
 def makeMaze(n,proba_0=0.2,proba_food=0.1):
@@ -134,10 +133,6 @@ def defineMazeAvailableActions(arr):
           if arr[i,j-1]==0:
             mazeAvailableActions[i,j].remove(actions_dict[0])
 
-      # Add fight action if there is a ghost
-      if arr[i,j] == 3:
-        mazeAvailableActions.setdefault((i,j),[]).append(actions_dict[4])
-        
   return mazeAvailableActions
 
 def makeMazeTransformationModel(mazeActs):
@@ -160,9 +155,6 @@ def makeMazeTransformationModel(mazeActs):
           x=key[0]+1
           y=key[1]
           mazeStateSpace.setdefault(key,{})[action]=(x,y)
-        elif action=='fight':
-          
-          mazeStateSpace.setdefault(key,{})[action]=(key[0],key[1])
       if len(mazeActs[key])==0:
         mazeStateSpace.setdefault(key,{})
 
@@ -177,6 +169,7 @@ def getAllFoodLocations(arr):
     food_indices = np.where(arr == 2)
     return list(zip(food_indices[0], food_indices[1]))
 
-
-
+def getGhostLocations(arr):
+    ghost_indices = np.where(arr == 3)
+    return list(zip(ghost_indices[0], ghost_indices[1]))
 

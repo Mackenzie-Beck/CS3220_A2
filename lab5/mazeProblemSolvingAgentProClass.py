@@ -1,6 +1,6 @@
 from mazeProblemSolvingAgentClass import MazeProblemSolvingAgent
 import collections
-
+from manhattanDistance import manhattanDistance
 
 class MazeProblemSolvingAgentPro(MazeProblemSolvingAgent):
   def __init__(self, initial_state=None, dataGraph=None, goal=None, program=None):
@@ -23,7 +23,7 @@ class MazeProblemSolvingAgentPro(MazeProblemSolvingAgent):
         return solution, seq.path()
     else:
         print("No sequence found.")
-        return None, None
+        return [], []
 
   
   def actions_path(self, p):
@@ -32,16 +32,36 @@ class MazeProblemSolvingAgentPro(MazeProblemSolvingAgent):
       acts.append(n.action)
     return acts[1:]
 
-  def run(self):
+  def run(self, mazeSize, ghostLocations):
+    #set performance
+    performance = 0.2 * mazeSize
+
+
+
     print("goal list:", self.goal)
     path_to_goal=[]
+
     if isinstance(self.goal, list) and len(self.goal)>1:
       percept=self.state
       while len(self.goal)>0:
-        current_goal=self.goal[0]
+        
+
+       
+
+
+        # get the last goal
+        if len(self.goal)==1:
+          current_goal = self.goal[0]
+        #get every goal except the last one
+        else:
+          current_goal=self.optimizefood(percept, self.goal[0:-1])
+
+
         print("current percept:", percept)
         print("current goal:", current_goal)
         """Formulate a goal and problem, then search for a sequence of actions to solve it."""
+
+
         #4-phase problem-solving process
         self.state = self.update_state(self.state, percept)
         goal = current_goal
@@ -51,7 +71,31 @@ class MazeProblemSolvingAgentPro(MazeProblemSolvingAgent):
         percept=current_goal
         self.goal.remove(goal)
         print("goal list:", self.goal)
+        performance *= 2
+        print("performance:", performance)
+
+
+
+        for path in path_to_goal:
+          for node in path:
+            if node.state in ghostLocations:
+              print("Ghost found at:", node.state)
+              if performance > 0.3 * mazeSize:
+                performance -= 0.1 * performance
+                ghostLocations.remove(node.state)
+                print("Removed ghost: ", node.state)
+                print("performance:", performance)
+              else:
+                # Agent dies
+                print("Agent dies")
+                return [], []
+          
+      
 
       return self.seq, path_to_goal
     else:
         return super().__call__(self.state) 
+
+
+  def optimizefood(self, currentState, foodLocations):
+    return min(foodLocations, key=lambda x: manhattanDistance.calc(currentState, x))
