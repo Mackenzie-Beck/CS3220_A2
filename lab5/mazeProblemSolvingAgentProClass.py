@@ -32,7 +32,7 @@ class MazeProblemSolvingAgentPro(MazeProblemSolvingAgent):
       acts.append(n.action)
     return acts[1:]
 
-  def run(self, mazeSize, ghostLocations):
+  def run(self, mazeSize = 0, ghostLocations = []):
     #set performance
     performance = 0.2 * mazeSize
 
