@@ -1,7 +1,7 @@
 import numpy as np
 import math
 import random
-
+from manhattanDistance import *
 LEFT = 0
 UP = 1
 RIGHT = 2
@@ -177,6 +177,7 @@ def getAllFoodLocations(arr):
     food_indices = np.where(arr == 2)
     return list(zip(food_indices[0], food_indices[1]))
 
-
-
+def optimizefood(currentState, foodLocations):
+    foodLocations.sort(key=lambda x: manhattanDistance.calc(currentState, x))
+    return foodLocations
 
