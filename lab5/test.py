@@ -19,9 +19,11 @@ goalStates.append(finalState)
 
 a1 = ProblemSolvingMazeAgentAStarManhattan(initState, mazeWorldGraph, goalStates)
 
+ghostLocations = getGhostLocations(a)
+s,p = a1.run(n, ghostLocations)
 
-s,p = a1.run()
 
+print(ghostLocations)
 draw_maze(a)
 
 

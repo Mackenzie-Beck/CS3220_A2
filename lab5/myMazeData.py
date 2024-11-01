@@ -21,7 +21,7 @@ def makeMaze(n,proba_0=0.2,proba_food=0.1):
   # resulting array will have 20% of zeros
   # resulting array will have 10% of food pellets
   arrMaze=np.random.choice([0,1,2], size=size, p=[proba_0, 1-proba_0-proba_food,proba_food])
-  ghosts = 5
+  ghosts = 30
   while ghosts > 0:
     i = random.randint(0,n-1)
     j = random.randint(0,n-1)
@@ -168,3 +168,8 @@ def getFoodLocation(arr):
 def getAllFoodLocations(arr):
     food_indices = np.where(arr == 2)
     return list(zip(food_indices[0], food_indices[1]))
+
+def getGhostLocations(arr):
+    ghost_indices = np.where(arr == 3)
+    return list(zip(ghost_indices[0], ghost_indices[1]))
+
