@@ -32,7 +32,7 @@ class MazeProblemSolvingAgentPro(MazeProblemSolvingAgent):
       acts.append(n.action)
     return acts[1:]
 
-  def run(self):
+  def run(self, mazeSize, ghostLocations):
     print("goal list:", self.goal)
     path_to_goal=[]
     if isinstance(self.goal, list) and len(self.goal)>1:
@@ -42,11 +42,16 @@ class MazeProblemSolvingAgentPro(MazeProblemSolvingAgent):
         # get the last goal
         if len(self.goal)==1:
           current_goal = self.goal[0]
+        #get every goal except the last one
         else:
-          current_goal=self.optimizefood(percept, self.goal[0:-1])#!!!!
+          current_goal=self.optimizefood(percept, self.goal[0:-1])
+
+
         print("current percept:", percept)
         print("current goal:", current_goal)
         """Formulate a goal and problem, then search for a sequence of actions to solve it."""
+
+        
         #4-phase problem-solving process
         self.state = self.update_state(self.state, percept)
         goal = current_goal

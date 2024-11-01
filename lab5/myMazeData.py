@@ -14,7 +14,6 @@ actions_dict = {
     UP: 'up',
     RIGHT: 'right',
     DOWN: 'down',
-    FIGHT: 'fight',
 }
 
 def makeMaze(n,proba_0=0.2,proba_food=0.1):
@@ -134,10 +133,6 @@ def defineMazeAvailableActions(arr):
           if arr[i,j-1]==0:
             mazeAvailableActions[i,j].remove(actions_dict[0])
 
-      # Add fight action if there is a ghost
-      if arr[i,j] == 20:
-        mazeAvailableActions.setdefault((i,j),[]).append(actions_dict[4])
-        
   return mazeAvailableActions
 
 def makeMazeTransformationModel(mazeActs):
@@ -160,8 +155,6 @@ def makeMazeTransformationModel(mazeActs):
           x=key[0]+1
           y=key[1]
           mazeStateSpace.setdefault(key,{})[action]=(x,y)
-        elif action=='fight':
-          mazeStateSpace.setdefault(key,{})[action]=(key[0],key[1])
       if len(mazeActs[key])==0:
         mazeStateSpace.setdefault(key,{})
 
