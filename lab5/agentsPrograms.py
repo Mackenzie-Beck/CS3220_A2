@@ -222,14 +222,18 @@ def IDA_StarSearchAgentProgram(f=None):
                 #print(child)
                 print("The child node {}.".format(child))
                 childExpansions += 1 #Added.
+
+                newF = child.path_cost
+
                 h=child.path_cost+round(f(child.state, problem.goal),3)
                 frontier.put((h,child))
                 reached.update({child.state:child})
+
+                nextF = min(nextF, newF)
+                fLimit = nextF
         #Added.
         print("Current node has {} child nodes (expansions).".format(childExpansions))
         totalExpansion += childExpansions
-
-
 
       return None
 
