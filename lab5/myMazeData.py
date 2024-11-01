@@ -161,7 +161,6 @@ def makeMazeTransformationModel(mazeActs):
           y=key[1]
           mazeStateSpace.setdefault(key,{})[action]=(x,y)
         elif action=='fight':
-          
           mazeStateSpace.setdefault(key,{})[action]=(key[0],key[1])
       if len(mazeActs[key])==0:
         mazeStateSpace.setdefault(key,{})
@@ -176,8 +175,3 @@ def getFoodLocation(arr):
 def getAllFoodLocations(arr):
     food_indices = np.where(arr == 2)
     return list(zip(food_indices[0], food_indices[1]))
-
-def optimizefood(currentState, foodLocations):
-    foodLocations.sort(key=lambda x: manhattanDistance.calc(currentState, x))
-    return foodLocations
-

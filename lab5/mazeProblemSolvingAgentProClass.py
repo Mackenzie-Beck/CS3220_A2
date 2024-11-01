@@ -1,6 +1,6 @@
 from mazeProblemSolvingAgentClass import MazeProblemSolvingAgent
 import collections
-
+from manhattanDistance import manhattanDistance
 
 class MazeProblemSolvingAgentPro(MazeProblemSolvingAgent):
   def __init__(self, initial_state=None, dataGraph=None, goal=None, program=None):
@@ -23,7 +23,7 @@ class MazeProblemSolvingAgentPro(MazeProblemSolvingAgent):
         return solution, seq.path()
     else:
         print("No sequence found.")
-        return None, None
+        return [], []
 
   
   def actions_path(self, p):
@@ -38,7 +38,7 @@ class MazeProblemSolvingAgentPro(MazeProblemSolvingAgent):
     if isinstance(self.goal, list) and len(self.goal)>1:
       percept=self.state
       while len(self.goal)>0:
-        current_goal=self.goal[0]
+        current_goal=self.optimizefood(percept, self.goal)#!!!!
         print("current percept:", percept)
         print("current goal:", current_goal)
         """Formulate a goal and problem, then search for a sequence of actions to solve it."""
@@ -55,3 +55,7 @@ class MazeProblemSolvingAgentPro(MazeProblemSolvingAgent):
       return self.seq, path_to_goal
     else:
         return super().__call__(self.state) 
+
+
+  def optimizefood(self, currentState, foodLocations):
+    return min(foodLocations, key=lambda x: manhattanDistance.calc(currentState, x))

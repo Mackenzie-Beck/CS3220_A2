@@ -76,7 +76,7 @@ def A_StarSearchAgentProgram(f=None):
         #Added.
         print("Current node has {} child nodes (expansions).".format(childExpansions))
         totalExpansion += childExpansions
-      return None
+      #return None
 
     return program
 
