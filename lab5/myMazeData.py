@@ -135,7 +135,7 @@ def defineMazeAvailableActions(arr):
             mazeAvailableActions[i,j].remove(actions_dict[0])
 
       # Add fight action if there is a ghost
-      if arr[i,j] == 3:
+      if arr[i,j] == 20:
         mazeAvailableActions.setdefault((i,j),[]).append(actions_dict[4])
         
   return mazeAvailableActions

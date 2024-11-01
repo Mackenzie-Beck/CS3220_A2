@@ -16,8 +16,6 @@ initState = (0,0)
 finalState = (n-1, n-1)
 goalStates = getAllFoodLocations(a)
 goalStates.append(finalState)
-print(goalStates)
-
 
 a1 = ProblemSolvingMazeAgentAStarManhattan(initState, mazeWorldGraph, goalStates)
 
@@ -38,3 +36,5 @@ for path in p:
 
 print(a)
 print(resolvedMaze)
+
+draw_maze(resolvedMaze)

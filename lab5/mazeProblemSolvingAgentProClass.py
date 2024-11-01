@@ -38,7 +38,12 @@ class MazeProblemSolvingAgentPro(MazeProblemSolvingAgent):
     if isinstance(self.goal, list) and len(self.goal)>1:
       percept=self.state
       while len(self.goal)>0:
-        current_goal=self.optimizefood(percept, self.goal)#!!!!
+
+        # get the last goal
+        if len(self.goal)==1:
+          current_goal = self.goal[0]
+        else:
+          current_goal=self.optimizefood(percept, self.goal[0:-1])#!!!!
         print("current percept:", percept)
         print("current goal:", current_goal)
         """Formulate a goal and problem, then search for a sequence of actions to solve it."""
