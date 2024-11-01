@@ -19,3 +19,5 @@ def ProblemSolvingMazeAgentBREADTH_FS(initState,WorldGraph,goalState):
     return MazeProblemSolvingAgentPro(initState,WorldGraph,goalState,BreadthFirstSearchGraph())
 
 
+def ProblemSolvingMazeAgentAStarManhattan(initState, WorldGraph, goalState):
+    return MazeProblemSolvingAgentPro(initState, WorldGraph, goalState, A_StarSearchAgentProgram(manhattanDistance.calc))

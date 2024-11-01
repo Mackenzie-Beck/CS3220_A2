@@ -160,6 +160,9 @@ def makeMazeTransformationModel(mazeActs):
           x=key[0]+1
           y=key[1]
           mazeStateSpace.setdefault(key,{})[action]=(x,y)
+        elif action=='fight':
+          
+          mazeStateSpace.setdefault(key,{})[action]=(key[0],key[1])
       if len(mazeActs[key])==0:
         mazeStateSpace.setdefault(key,{})
 
@@ -171,11 +174,8 @@ def getFoodLocation(arr):
   return x,y
 
 def getAllFoodLocations(arr):
-    food_locations = []
     food_indices = np.where(arr == 2)
-    for i in range(len(food_indices[0])):
-        food_locations.append((food_indices[0][i], food_indices[1][i]))
-    return food_locations
+    return list(zip(food_indices[0], food_indices[1]))
 
 
 

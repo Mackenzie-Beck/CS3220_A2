@@ -60,7 +60,7 @@ def A_StarSearchAgentProgram(f=None):
         if problem.goal_test(node.state):
           print("We have found our goal: {}".format (node.state))
           print("Total expansions: {}".format(totalExpansion))
-          #print("Total cost: {}".format(frontier.get()[0]))
+          print("Total cost: {}".format(node.path_cost))
           return node
 
         #reached.add(node.state)

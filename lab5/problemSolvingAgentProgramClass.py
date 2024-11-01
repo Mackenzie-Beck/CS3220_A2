@@ -25,7 +25,10 @@ class SimpleProblemSolvingAgentProgram:
         # Modified for A*
         #print('test1',self.seq)
         #print('test2',self.seq[0])
-        return self.seq[0].pop(0)
+        if self.seq and isinstance(self.seq[0], list) and self.seq[0]:    
+            return self.seq[0].pop(0)
+        else:
+            return None
         #return self.seq.pop(0)
 
   def update_state(self, state, percept):

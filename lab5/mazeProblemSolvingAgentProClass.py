@@ -17,9 +17,13 @@ class MazeProblemSolvingAgentPro(MazeProblemSolvingAgent):
   def search(self, problem):
     seq = self.program(problem)
     print(seq)
-    solution=self.actions_path(seq.path()) if seq else None
-    print("Solution (a sequence of actions) from the initial state to a goal: {}".format(solution))
-    return solution, seq.path()
+    if seq is not None:
+        solution = self.actions_path(seq.path())
+        print("Solution (a sequence of actions) from the initial state to a goal: {}".format(solution))
+        return solution, seq.path()
+    else:
+        print("No sequence found.")
+        return None, None
 
   
   def actions_path(self, p):
@@ -47,8 +51,7 @@ class MazeProblemSolvingAgentPro(MazeProblemSolvingAgent):
         percept=current_goal
         self.goal.remove(goal)
         print("goal list:", self.goal)
-      if not self.seq:
-                return None
+
       return self.seq, path_to_goal
     else:
-      return super().__call__(self.state)
+        return super().__call__(self.state) 
