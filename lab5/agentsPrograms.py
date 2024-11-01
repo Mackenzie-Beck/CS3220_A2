@@ -178,3 +178,59 @@ def BreadthFirstSearchGraph():
   return program
 
 
+def IDA_StarSearchAgentProgram(f=None):
+    def program(problem):
+      node = Node(problem.initial)
+      frontier = PriorityQueue()
+
+      fLimit = node.path_cost
+
+      h=node.path_cost+round(f(node.state, problem.goal),3)
+      frontier.put((h,node))
+      reached = {problem.initial:node}
+
+      totalExpansion = 0 #Added.
+
+      while frontier:
+
+        nextF = float('inf')
+
+        print("Goal: ", problem.goal)
+        print("Frontier: ", frontier.queue)
+
+        if frontier.empty():
+          print("Frontier is empty")
+          return None
+        node = frontier.get()[1]
+        print("The node {} is extracted from frontier:".format(node.state))
+
+        if node.path_cost > fLimit:
+            print("Current node is beyond threshold!")
+            fLimit = node.path_cost
+            continue
+
+        if problem.goal_test(node.state):
+          print("We have found our goal: {}".format (node.state))
+          print("Total expansions: {}".format(totalExpansion))
+          print("Total cost: {}".format(node.path_cost))
+          return node
+
+        #reached.add(node.state)
+        childExpansions = 0 #Added.
+        for child in node.expand(problem):
+            if child.state not in reached or child.path_cost<reached[child.state].path_cost:
+                #print(child)
+                print("The child node {}.".format(child))
+                childExpansions += 1 #Added.
+                h=child.path_cost+round(f(child.state, problem.goal),3)
+                frontier.put((h,child))
+                reached.update({child.state:child})
+        #Added.
+        print("Current node has {} child nodes (expansions).".format(childExpansions))
+        totalExpansion += childExpansions
+
+
+
+      return None
+
+    return program
