@@ -29,3 +29,7 @@ def ProblemSolvingMazeAgentIDAStar(initState, WorldGraph, goalState):
 
 def ProblemSolvingMazeAgentIDAStarManhattan(initState, WorldGraph, goalState):
     return MazeProblemSolvingAgentPro(initState, WorldGraph, goalState, IDA_StarSearchAgentProgram(manhattanDistance.calc))
+
+
+def ProblemSolvingMazeAgentIDAStarManhattan(initState, WorldGraph, goalState):
+    return MazeProblemSolvingAgentPro(initState, WorldGraph, goalState, IDA_StarSearchAgentProgram(manhattanDistance.calc))

@@ -17,8 +17,8 @@ finalState = (n-1, n-1)
 goalStates = getAllFoodLocations(a)
 goalStates.append(finalState)
 
-a1 = ProblemSolvingMazeAgentAStarManhattan(initState, mazeWorldGraph, goalStates)
-
+#a1 = ProblemSolvingMazeAgentAStarManhattan(initState, mazeWorldGraph, goalStates)
+a1 = ProblemSolvingMazeAgentIDAStarManhattan(initState, mazeWorldGraph, goalStates)
 ghostLocations = getGhostLocations(a)
 s,p = a1.run(n, ghostLocations)
 
