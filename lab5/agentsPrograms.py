@@ -177,19 +177,19 @@ def BreadthFirstSearchGraph():
 
   return program
 
-
+# Need to confirm.
 def IDA_StarSearchAgentProgram(f=None):
     def program(problem):
       node = Node(problem.initial)
       frontier = PriorityQueue()
 
-      fLimit = node.path_cost
-
       h=node.path_cost+round(f(node.state, problem.goal),3)
       frontier.put((h,node))
       reached = {problem.initial:node}
 
-      totalExpansion = 0 #Added.
+      # Added
+      totalExpansion = 0
+      fLimit = h
 
       while frontier:
 
@@ -204,9 +204,9 @@ def IDA_StarSearchAgentProgram(f=None):
         node = frontier.get()[1]
         print("The node {} is extracted from frontier:".format(node.state))
 
-        if node.path_cost > fLimit:
+        if h > fLimit:
             print("Current node is beyond threshold!")
-            fLimit = node.path_cost
+            fLimit = h
             continue
 
         if problem.goal_test(node.state):
@@ -223,12 +223,11 @@ def IDA_StarSearchAgentProgram(f=None):
                 print("The child node {}.".format(child))
                 childExpansions += 1 #Added.
 
-                newF = child.path_cost
-
                 h=child.path_cost+round(f(child.state, problem.goal),3)
                 frontier.put((h,child))
                 reached.update({child.state:child})
 
+                newF = h
                 nextF = min(nextF, newF)
                 fLimit = nextF
         #Added.
@@ -238,3 +237,44 @@ def IDA_StarSearchAgentProgram(f=None):
       return None
 
     return program
+
+# Not Implemented!
+def IDA_StartSearchAgentProgramV2(f=None):
+    def program(problem):
+        node = Node(problem.initial)
+
+        fCost = node.path_cost + round(f(node.state, problem.goal), 3)
+        fLimit = fCost
+
+        frontier = PriorityQueue()
+        frontier.put((fCost, node))
+        reached = {problem.initial:node}
+
+        while frontier:
+            solution, fLimit = DFS_Contour(problem, node, fLimit)
+            if solution is not None:
+                return solution
+            if fLimit == float('inf'):
+                return None
+    
+    def DFS_Contour(problem, node, fLimit):
+        nextF = float('inf')
+
+        print("Goal: ", problem.goal)
+        print("Frontier: ", frontier.queue)
+
+        fCost = node.path_cost + round(f(node.state, problem.goal), 3)
+        if fCost > fLimit:
+            print("Current node is beyond threshold!")
+            return None, fCost
+        if problem.goal_test(node.state):
+            print("We have found our goal: {}".format (node.state))
+            print("Total expansions: {}".format(totalExpansion))
+            print("Total cost: {}".format(node.path_cost))
+            return node, fLimit
+        for child in node.expand(problem):
+            solution, newF = DFS_Contour(problem, child, fLimit)
+            if solution is not None:
+                return solution, fLimit
+            nextF = min(nextF, newF)
+        return None, nextF
