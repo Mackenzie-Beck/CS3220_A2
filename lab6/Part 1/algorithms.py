@@ -37,6 +37,47 @@ def AC3(csp):
   return True, checks  # CSP is satisfiable
 
 
+def AC3v2(csp):
+  queue = Queue()
+  #temp = []
+
+  print(f"Initial queue:")
+  for Xi in csp.variables:
+    for Xk in csp.neighbors[Xi]:
+
+      #temp.append((Xi,Xk))
+      queue.put((Xi, Xk))
+      print((Xi, Xk), end=" ")
+    print()
+   
+  csp.support_pruning()
+  checks = 0
+  while list(queue.queue):
+    (Xi, Xj) = queue.get()
+    #print(f'Arc {(Xi, Xj)} is cheking')
+    revised, checks = revise(csp, Xi, Xj, checks)
+    if revised:
+      if not csp.curr_domains[Xi]:
+        return False, checks  # CSP is inconsistent
+      for Xk in csp.neighbors[Xi]:
+        if Xk != Xj:
+          queue.put((Xk, Xi))
+    print(list(queue.queue))
+
+    print(f'Arc {(Xj, Xi)} is cheking')
+    revised, checks1 = back_revise(csp, Xi, Xj, checks)
+    if revised:
+      if not csp.curr_domains[Xj]:
+        return False, checks  # CSP is inconsistent
+      for Xk in csp.neighbors[Xj]:
+        if Xk != Xi:
+          queue.add((Xk, Xj))
+
+      
+  return True, checks  # CSP is satisfiable
+
+
+
 def revise(csp, Xi, Xj, checks=0):
     """Return true if we remove a value."""
     revised = False
