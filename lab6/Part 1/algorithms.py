@@ -39,13 +39,11 @@ def AC3(csp):
 
 def AC3v2(csp):
   queue = Queue()
-  #temp = []
 
   print(f"Initial queue:")
   for Xi in csp.variables:
     for Xk in csp.neighbors[Xi]:
 
-      #temp.append((Xi,Xk))
       queue.put((Xi, Xk))
       print((Xi, Xk), end=" ")
     print()
@@ -71,7 +69,7 @@ def AC3v2(csp):
         return False, checks  # CSP is inconsistent
       for Xk in csp.neighbors[Xj]:
         if Xk != Xi:
-          queue.add((Xk, Xj))
+          queue.put((Xk, Xj))
 
       
   return True, checks  # CSP is satisfiable
@@ -87,6 +85,7 @@ def revise(csp, Xi, Xj, checks=0):
         # if all(not csp.constraints(Xi, x, Xj, y) for y in csp.curr_domains[Xj]):
         conflict = True
         #print(csp.curr_domains[Xj])
+        print(csp.curr_domains[Xi])
         for y in csp.curr_domains[Xj]:
             if csp.constraints(Xi, x, Xj, y):
                 conflict = False
