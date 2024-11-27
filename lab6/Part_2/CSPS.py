@@ -11,9 +11,9 @@ def MapColoringCSP(colors, neighbors):
     return CSP(list(neighbors.keys()), UniversalDict(colors), neighbors, different_values_constraint)
 
 
-def Dinner_CSP(neighbors):
+def Dinner_CSP(neighbors, people):
     """Make a CSP for the problem of seating guests at a dinner table, where specific people cannot sit next to each other
     as specified by the assignment"""
     if isinstance(neighbors, str):
         neighbors = parse_neighbors(neighbors)
-    return DinnerCSP(list(neighbors.keys()), UniversalDict(list('ABCDE')), neighbors, DinnerConstraint)
+    return DinnerCSP(list(neighbors.keys()), UniversalDict(people), neighbors, DinnerConstraint)

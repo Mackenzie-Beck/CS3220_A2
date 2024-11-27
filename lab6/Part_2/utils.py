@@ -34,8 +34,6 @@ def DinnerConstraint(A, a, B, b):
         return False
     elif (a == "C" and b == "B") or (a == "B" and b == "C"):
         return False
-    elif a == b:
-        return False
     else:
         return True
 

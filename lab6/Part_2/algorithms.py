@@ -106,6 +106,7 @@ def backtracking_search(csp, select_unassigned_variable=first_unassigned_variabl
         for value in order_domain_values(var, assignment, csp):
             if csp.nconflicts(var, value, assignment)==0:
                 csp.assign(var, value, assignment)
+                csp.remove_from_domains(value)
                 result = backtrack(assignment)
                 if result is not None:
                   return result

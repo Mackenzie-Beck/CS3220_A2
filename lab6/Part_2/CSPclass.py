@@ -23,7 +23,13 @@ class CSPBasic(Problem):
 
       def prune(self, var, value):
         """Rule out var=value."""
-        self.curr_domains[var].remove(value)
+        if value in self.curr_domains[var]:
+            self.curr_domains[var].remove(value)
+
+
+      def remove_from_domains(self,value):
+        for var in self.variables:
+            self.prune(var,value)
 
 
 class CSP(CSPBasic):

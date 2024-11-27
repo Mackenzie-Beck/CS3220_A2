@@ -6,7 +6,7 @@ from utils import *
 
 
 variables = [0,1,2,3,4,5] #list of variables, representing the seats around the table
-dinnerproblemdomain = UniversalDict(list('ABCDE'))  #domain of each variable is the same, representing the people
+dinnerproblemdomain = list('ABCDE_')  #domain of each variable is the same, representing the people
 
 dinnertable = "0: 1 5; 1: 2; 2: 3; 3: 4; 4: 5; 5:"
 
@@ -16,7 +16,7 @@ dinnertable = "0: 1 5; 1: 2; 2: 3; 3: 4; 4: 5; 5:"
 
 #2. Develop CSP implementation (based on CSP class)
 from CSPS import Dinner_CSP
-dinnerCSP = Dinner_CSP(dinnertable)
+dinnerCSP = Dinner_CSP(dinnertable, dinnerproblemdomain)
 print(dinnerCSP.variables)
 print(dinnerCSP.domains)
 print(dinnerCSP.neighbors)
