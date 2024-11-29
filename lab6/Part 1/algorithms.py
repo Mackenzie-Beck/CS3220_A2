@@ -58,6 +58,10 @@ def AC3v2(csp):
       Ex = '<'
     elif Ex == '<':
       Ex = '>'
+    elif Ex == '<=' or Ex == '=<':
+      Ex = '>='
+    elif Ex == '>=' or Ex == '=>':
+      Ex = '<='
     elif Ex == '=' or Ex == '==':
       Ex = '=='
     elif Ex == '!=':
