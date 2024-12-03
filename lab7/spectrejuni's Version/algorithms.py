@@ -1,5 +1,6 @@
 import random
 from utils import min_conflicts_value
+from queue import Queue
 
 # Min-conflicts Hill Climbing search for CSPs
 def min_conflicts(csp, max_steps=100000):
