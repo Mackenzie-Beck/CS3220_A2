@@ -7,9 +7,16 @@ def min_conflicts(csp, max_steps=100000):
     """Solve a CSP by stochastic Hill Climbing on the number of conflicts."""
     # Generate a complete assignment for all variables (probably with conflicts)
     csp.current = current = {}
+    used = []
     for var in csp.variables:
         val = min_conflicts_value(csp, var, current)
-        csp.assign(var, val, current)
+        if val not in used:
+          used.append(val)
+          csp.assign(var, val, current)
+        # elif len(used) == :
+        #   while val in used: # Left off here
+
+
     print(f"Start with an arbitrary assignment: {csp.current}")
     # Now repeatedly choose a random conflicted variable and change it
     for i in range(max_steps):
