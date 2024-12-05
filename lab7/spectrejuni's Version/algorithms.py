@@ -13,20 +13,28 @@ def min_conflicts(csp, max_steps=100000):
         if val not in used:
           used.append(val)
           csp.assign(var, val, current)
-        # elif len(used) == :
-        #   while val in used: # Left off here
-
+        else:
+          while val in used:
+            val = min_conflicts_value(csp, var, current)
+          csp.assign(var, val, current)
 
     print(f"Start with an arbitrary assignment: {csp.current}")
     # Now repeatedly choose a random conflicted variable and change it
     for i in range(max_steps):
+        used = []
         conflicted = csp.conflicted_vars(current)
         if not conflicted:
             return current
         var = random.choice(conflicted)
         print(f"The var. {var} was selected randomly")
         val = min_conflicts_value(csp, var, current)
-        csp.assign(var, val, current)
+        if val not in used:
+          used.append(val)
+          csp.assign(var, val, current)
+        else:
+          while val in used:
+            val = min_conflicts_value(csp, var, current)
+          csp.assign(var, val, current)
     return None
 
 
