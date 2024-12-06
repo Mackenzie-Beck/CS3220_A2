@@ -25,6 +25,20 @@ def different_values_constraint(A, a, B, b):
     """A constraint saying two neighboring variables must differ in value."""
     return a != b
 
+def schedule_constraints(A, a, B, b):
+    """A constraint implementing the schedule outlined in assignment."""
+    # A and B are the variables (e.g., 'mon_1'), a and b are the values
+    if a[0] == b[0] and a[1] == b[1]:  # same course section
+        return False
+
+    # Prevent the same course from being scheduled more than once a day
+    day_a, slot_a = A.split('_')
+    day_b, slot_b = B.split('_')
+    if day_a == day_b and a[0] == b[0]:
+        return False
+
+    return True
+
 
 
 def parse_neighbors(neighbors):
